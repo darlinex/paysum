@@ -1,0 +1,434 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.content{
+    margin-left: 260px;
+    padding: 23px;
+}
+
+.everything{
+  display: grid;
+  grid-template-columns: 68% 30%;
+  align-items: start;
+}
+
+.first-div{
+  display: grid;
+  grid-template-columns: 46% 46%;
+  gap: 20px;
+  align-items: end;
+}
+/* Card Container */
+.payroll-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; 
+    position: relative;
+}
+
+/* Title */
+.title {
+    font-size: 18px;
+    color: #00294A;
+    margin-bottom: 15px;
+}
+
+/* Progress Bar Container */
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Ensures spacing remains consistent */
+}
+
+/* SVG Progress Ring */
+.progress-ring {
+    width: 80px;  /* Set a fixed width */
+    height: 80px; /* Set a fixed height */
+    flex-shrink: 0; /* Prevents it from resizing */
+}
+
+.background-circle {
+    fill: none;
+    stroke: #FFE5B4;
+    stroke-width: 6;
+}
+
+.progress-circle {
+    fill: none;
+    stroke: #FF7943;
+    stroke-width: 6;
+    stroke-dasharray: 188.4; /* 2 * PI * r */
+    stroke-dashoffset: calc(188.4 - (188.4 * 75) / 100);
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.progress-text {
+    font-size: 14px;
+    fill: #00294A;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+/* Ensures that the right section does not push the progress bar */
+.legend-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1; /* Takes up the remaining space */
+}
+
+/* Legend */
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #00294A;
+}
+
+.legend-item span {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 2px;
+}
+
+.ready {
+    background-color: rgba(255, 148, 105, 1);
+}
+
+.not-ready {
+    background-color: rgba(255, 229, 153, 1);
+}
+
+/* Status Text */
+.status-text {
+    font-size: 12px;
+    color: #666;
+}
+
+
+
+
+  
+  /* Legend */
+  .legend {
+    margin-left: 15px;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    
+    font-size: 14px;
+    color: #00294A;
+  }
+  
+  .legend-item span {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 2px;
+  }
+  
+  .ready {
+    background-color: #FF7943;
+  }
+  
+  .not-ready {
+    background-color: #FFE5B4;
+  }
+  
+  /* Status Text */
+  .status-text {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+  }
+  
+  /* Next Button */
+  .next-btn {
+    position: absolute;
+    display: flex;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: 1px solid rgba(232, 110, 61, 1);
+    padding: 5px;
+    border-radius: 8px;
+    color: rgba(232, 110, 61, 1);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .next-btn:hover {
+    background: #FF7943;
+    color: white;
+  }
+  
+  .secondcard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    width: 100%;
+    
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    
+    position: relative;
+  }
+
+  .last{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 45px;
+  }
+
+
+  .icons-last{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+   
+    gap: 70px;
+  }
+
+
+  .build-btn{
+    background-color: rgba(52, 199, 89, 0.2);
+    border: 2px solid rgba(52, 199, 89, 0.2);
+    display: flex;
+    gap: 40px;
+    position: relative;
+    top: 37px;
+    bottom: 0;
+    color: rgba(52, 199, 89, 1);
+    border-radius: 50%;
+    font-size: 25px;
+    padding: 4px;
+  }
+  .next-btn2{
+    position: absolute;
+    display: flex;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: 1px solid rgba(232, 110, 61, 1);
+    padding: 5px;
+    border-radius: 8px;
+    color: rgba(232, 110, 61, 1);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+
+  /* third */
+
+  .notify-btn{
+    background-color: rgba(255, 191, 0, 0.2);
+    border: 2px solid rgba(255, 191, 0, 0.2);
+    display: flex;
+    gap: 40px;
+    position: relative;
+    top: 37px;
+    bottom: 0;
+    color: rgba(255, 191, 0, 1);
+    border-radius: 50%;
+    font-size: 25px;
+    padding: 4px;
+  }
+
+  .thirdcard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    width:100%;
+    height: 130px;
+    
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    
+    position: relative;
+  }
+
+
+  /* fourth */
+
+  .person-btn{
+    background-color:rgba(230, 237, 243, 1);
+    border: 2px solid rgba(230, 237, 243, 1);
+    display: flex;
+    gap: 40px;
+    position: relative;
+    top: 37px;
+    bottom: 0;
+    color:rgba(0, 75, 135, 1);
+    border-radius: 50%;
+    font-size: 25px;
+    padding: 4px;
+  }
+
+
+  /* fifth */
+  
+  /* Main Card */
+.payslip-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: left;
+}
+
+/* Header */
+.payslip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Title */
+.payslip-header h3 {
+    font-size: 18px;
+    color: #00294A;
+    margin: 0;
+}
+
+/* Next Button */
+.next-btn2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #FF7943;
+    border-radius: 6px;
+    color: #FF7943;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.next-btn2:hover {
+    background: #FF7943;
+    color: white;
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Progress Container */
+.progress-container2 {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+/* SVG Progress Ring */
+.progress-ring2 {
+    position: relative;
+}
+
+.background-circle2{
+    fill: none;
+    stroke: rgba(243, 105, 96, 1);
+    stroke-width: 8;
+}
+
+.progress-circle2 {
+    fill: none;
+    stroke: #28A745;
+    stroke-width: 8;
+    stroke-dasharray: 251.2; /* 2 * PI * r */
+    stroke-dashoffset: calc(251.2 - (251.2 * 90) / 100);
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.progress-text2 {
+    font-size: 16px;
+    fill: #00294A;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+/* Status Labels */
+.status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.green {
+    background: #28A745;
+}
+
+.red {
+    background: #FF4D4D;
+}
+
+/* Summary Text */
+.summary {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+.next-btn3 {
+  position: relative;
+  display: flex;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: 1px solid rgba(232, 110, 61, 1);
+  padding: 5px;
+  border-radius: 8px;
+  color: rgba(232, 110, 61, 1);
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.next-btn3:hover {
+  background: #FF7943;
+  color: white;
+}
+
+
+
