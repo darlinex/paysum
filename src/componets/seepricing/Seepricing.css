@@ -1,0 +1,26 @@
+.pricing-text{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: white;
+}
+
+.pricing-text h1{
+    font-weight: bolder;
+    font-size: 4rem;
+}
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  

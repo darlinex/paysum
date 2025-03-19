@@ -15,6 +15,7 @@ import Otp from './componets/authentication/Otp';
 import HomeScreen from './componets/dashboard/home';
 import CalculatorScreen from './componets/dashboard/Calculator';
 import AllEmployees from './componets/dashboard/AllEmployees';
+import SeePricing from './componets/seepricing/SeePricing';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
 
         <Route path="/" element={<Layout />}>
           <Route path="demo" element={<Demo />} />
+          <Route path="seepricing" element={<SeePricing />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -37,6 +39,7 @@ function App() {
           <Route path="allemployees" element={<AllEmployees />} />
         </Route>
         <Route path="/demo" element={<Demo />} />
+        <Route path="/seepricing" element={<SeePricing />} />
         <Route path="/thanks" element={<Thankyoupage />} />
         <Route path="/otp/:email" element={<Otp />} />
 

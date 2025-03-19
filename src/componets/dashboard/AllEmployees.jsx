@@ -7,6 +7,7 @@ import './AllEmployees.css'
 export default function AllEmployees() {
     const [employees, setEmployees] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    console.log(employees)
 
     return (
         <div className='employee-page'>

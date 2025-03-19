@@ -10,7 +10,8 @@ function AddEmployeeModal({ setEmployees, setShowModal }) {
         department: "",
         employmentType: "",
         jobTitle: "",
-        bankName: ""
+        bankName: "",
+        salary: ""
     });
 
     const employeedDetailsArray = Object.keys(empDetails);
@@ -55,13 +56,13 @@ function AddEmployeeModal({ setEmployees, setShowModal }) {
                             key={index}
                             type="text"
                             name={field}
-                            placeholder={field}
+                            placeholder={field.toUpperCase()}
                             className="block w-full p-2 border border-gray-300 rounded-md"
                             onChange={handleChange}
                             value={empDetails[field]}
                         />
                     ))}
-                    <button type="submit" className="w-full p-2 mt-4 bg-blue-500 text-white rounded-md">
+                    <button type="submit" className="w-full p-2 mt-4 bg-blue-500 text-white rounded-md m-10">
                         Create Employee
                     </button>
                 </form>
