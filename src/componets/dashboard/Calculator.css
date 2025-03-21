@@ -1,0 +1,79 @@
+.calculator{
+    margin-left: 260px;
+    padding: 8px;
+}
+
+.payroll{
+    padding: 20px;
+    background-color: #E6EDF3;
+    
+}
+
+.payroll h3{
+    font-weight: bolder;
+    font-size: 2rem;
+}
+
+.payroll button{
+    padding: 10px 25px;
+    background-color: #FF7943;
+    border: 1px solid #FF7943;
+    border-radius: 8px;
+    color: white ;
+}
+.run-payroll button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px; /* Controls spacing between text and icon */
+    padding: 12px 20px;
+    background-color: #FF7943;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.run-payroll button:hover {
+    background-color: rgba(0, 41, 74, 0.85);
+}
+
+.run-payroll .icon {
+    font-size: 1.2rem;
+    position: relative;
+    top: 1px; /* Adjusts vertical alignment slightly */
+}
+.view-history{
+    padding: 10px;
+}
+
+.view-history button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 20px;
+    background-color: white;
+    color: #00294A;
+    border: 2px solid gray;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    
+}
+
+.view-history button:hover{
+    background-color: rgba(0, 41, 74, 0.85);
+}
+
+.view-history .icon4 {
+    font-size: 1.2rem;
+    position: relative;
+    top: 1px; /* Adjusts vertical alignment slightly */
+    right: 0;
+}

@@ -15,10 +15,14 @@ import Otp from './componets/authentication/Otp';
 import HomeScreen from './componets/dashboard/home';
 import CalculatorScreen from './componets/dashboard/Calculator';
 import AllEmployees from './componets/dashboard/AllEmployees';
+import Payslip from './componets/dashboard/Payslip';
 import SeePricing from './componets/seepricing/SeePricing';
+import ProtectedRoute from './utils/protectedRoutes';
 
 
 function App() {
+
+  console.log('starting app')
   return (
     <BrowserRouter>
 
@@ -33,13 +37,17 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/loader" element={<Loader />} />
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="home" element={<HomeScreen />} />
-          <Route path="calculator" element={<CalculatorScreen />} />
-          <Route path="allemployees" element={<AllEmployees />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="home" element={<HomeScreen />} />
+            <Route path="calculator" element={<CalculatorScreen />} />
+            <Route path="allemployees" element={<AllEmployees />} />
+            <Route path="payslip" element={<Payslip />} />
+          </Route>
         </Route>
         <Route path="/demo" element={<Demo />} />
         <Route path="/seepricing" element={<SeePricing />} />
+
         <Route path="/thanks" element={<Thankyoupage />} />
         <Route path="/otp/:email" element={<Otp />} />
 

@@ -2,6 +2,11 @@
     margin-left: 260px;
     padding: 23px;
 }
+.content h1{
+  padding: 20px 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 
 .everything{
   display: grid;
@@ -84,7 +89,7 @@
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: #00294A;
+    color: #545454 !important;
 }
 
 .legend-item span {
@@ -95,11 +100,11 @@
     border-radius: 2px;
 }
 
-.ready {
+.ready1 {
     background-color: rgba(255, 148, 105, 1);
 }
 
-.not-ready {
+.not-ready1 {
     background-color: rgba(255, 229, 153, 1);
 }
 
@@ -388,7 +393,7 @@
 .status-indicator {
     width: 10px;
     height: 10px;
-    border-radius: 50%;
+    border-radius: 20%;
 }
 
 .green {
@@ -427,3 +432,67 @@
 
 
 
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Slide-up animation */
+@keyframes slideUp {
+  from {
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Pulse effect for hover */
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.05);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
+/* Apply fade-in animation to the whole content */
+.content {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Cards fade in when loaded */
+.first-div > div, .second-card > div {
+  animation: slideUp 0.6s ease-in-out;
+}
+
+/* Button animations */
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  animation: pulse 0.3s ease-in-out;
+}
+
+/* Smooth transition for all interactive elements */
+.next-btn, .notify-btn, .person-btn, .next-btn2, .build-btn, .next-btn3 {
+  transition: transform 0.3s ease;
+}
+
+.next-btn:hover, .notify-btn:hover, .person-btn:hover, .next-btn2:hover, .build-btn:hover, .next-btn3:hover {
+  transform: scale(1.1);
+}

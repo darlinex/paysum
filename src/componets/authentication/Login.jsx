@@ -34,9 +34,11 @@ function Login() {
 
         try {
             const response = await instance.post("/auth/login/", cred);
-            console.log(response.data.token);
+            console.log(response)
+            console.log('the token is' + response.data.token)
+            localStorage.setItem('ACCESS_TOKEN', response.data.token)
             toast.success("Login successful! Redirecting...");
-            navigate("/loader");
+            navigate('/loader')
         } catch (error) {
             if (error.response) {
                 const errorMessage = error.response.data.message || "Login failed. Try again.";
@@ -92,9 +94,9 @@ function Login() {
                     )}
                 </div>
 
-                <Link to={"/loader"}>
+                {/* <Link to={"/loader"}> */}
                 <button type="submit">Login</button>
-                </Link>
+                {/* </Link> */}
             </form>
         </div>
     );

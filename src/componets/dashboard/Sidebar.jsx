@@ -1,8 +1,11 @@
-import { div } from "framer-motion/client";
+
 import React from "react";
 import './Sidebar.css'
 import sidelogo from '../../assets/Footer_logo.png'
+import { CiHome } from "react-icons/ci";
+import { BsCalculator } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
+import { BiBookmarkAltMinus } from "react-icons/bi";
 import { CiSettings } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
@@ -20,19 +23,19 @@ const Sidebar = () => {
         {/* Navigation Section */}
         <Link className="side-select space-y-4">
           <Link to={"/dashboard/home"} className="select flex items-center gap-22 cursor-pointer hover:opacity-75">
-            <IoPersonOutline />
+          <CiHome />
             <p>Home</p>
           </Link>
           <Link to={'/dashboard/calculator'} className="select flex items-center gap-2 cursor-pointer hover:opacity-75">
-            <IoPersonOutline />
-            <p>Calculator</p>
+            <BsCalculator />
+            <p>Payroll</p>
           </Link>
           <Link to={"/dashboard/allemployees"} className="select flex items-center gap-2 cursor-pointer hover:opacity-75">
             <IoPersonOutline />
             <p>Employees</p>
           </Link>
-          <Link className="select flex items-center gap-2 cursor-pointer hover:opacity-75">
-            <IoPersonOutline />
+          <Link to={"/dashboard/payslip"} className="select flex items-center gap-2 cursor-pointer hover:opacity-75">
+            <BiBookmarkAltMinus  />
             <p>Payslip</p>
           </Link>
         </Link>
