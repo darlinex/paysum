@@ -11,6 +11,8 @@ function EmployeeTile({ employee }) {
         })
     }
 
+    
+
     return (
         <div className=' table-fields  flex justify-between border-b border-gray-400  items-center'>
             <div className='text-[#00294A]'>{employee.fullName}</div>
