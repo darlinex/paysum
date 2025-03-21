@@ -1,7 +1,7 @@
 import { X } from "lucide-react"; 
 import React, { useState } from "react";
 
-import './AddEmployee.css'
+import './Addemployee.css'
 
 function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) {
     const [empDetails, setEmpDetails] = useState({
