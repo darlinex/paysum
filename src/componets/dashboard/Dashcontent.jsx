@@ -8,28 +8,28 @@ import "./Dashcontent.css";
 function Content() {
   return (
     <div className="content">
-      <h1>Welcome Back, Admin</h1>
+      <h1 className="text-[#00294A] p-89">Welcome Back, Admin</h1>
 
       <div className="everything">
         {/* First Section (4 Cards) */}
         <div className="first-div">
           {/* Payroll Calculation Card */}
           <div className="payroll-card">
-            <h3 className="title">Payroll Calculation</h3>
+            <h3 className="title text-[#00294A] font-medium">Payroll Calculation</h3>
 
             <div className="progress-container">
               <svg className="progress-ring" width="80" height="80">
                 <circle className="background-circle" cx="40" cy="40" r="30"></circle>
                 <circle className="progress-circle" cx="40" cy="40" r="30"></circle>
-                <text x="40" y="45" className="progress-text">75%</text>
+                <text x="40" y="45" className="progress-text text-[#00294A] font-medium">75%</text>
               </svg>
 
               <div className="legend">
                 <div className="legend-item">
-                  <span className="ready"></span> Ready
+                  <span className="ready1"></span> Ready
                 </div>
                 <div className="legend-item">
-                  <span className="not-ready"></span> Not Ready
+                  <span className="not-ready1"></span> Not Ready
                 </div>
                 <p className="status-text">30 out of 40 employees ready for salary calculation.</p>
               </div>
@@ -43,10 +43,10 @@ function Content() {
           {/* Last Payroll Card */}
           <div className="secondcard">
             <div className="last">
-              <h3>Last Payroll</h3>
+              <h3 className="text-[#00294A] font-medium">Last Payroll</h3>
               <div className="last-text">
-                <p>Feb 23, 2025</p>
-                <p>₦650,500</p>
+                <p className="text-[#8A8A8A]">Feb 23, 2025</p>
+                <p className="text-[#00294A] font-medium">₦650,500</p>
               </div>
             </div>
             <div className="icons-last">
@@ -62,10 +62,10 @@ function Content() {
           {/* Next Payroll Card */}
           <div className="thirdcard">
             <div className="last">
-              <h3>Next Payroll</h3>
+              <h3 className="text-[#00294A] font-medium">Next Payroll</h3>
               <div className="last-text">
-                <p>Mar 23, 2025</p>
-                <p>7 days left...</p>
+                <p className="text-[#8A8A8A]">Mar 23, 2025</p>
+                <p className="text-[#00294A] font-medium">7 days left...</p>
               </div>
             </div>
             <div className="icons-last">
@@ -78,10 +78,10 @@ function Content() {
           {/* New Hires Card */}
           <div className="secondcard">
             <div className="last">
-              <h3>New Hires</h3>
+              <h3 className="text-[#00294A] font-medium">New Hires</h3>
               <div className="last-text">
-                <p>This Month</p>
-                <p>2 employees</p>
+                <p className="text-[#8A8A8A]">This Month</p>
+                <p className="text-[#00294A] font-medium">2 employees</p>
               </div>
             </div>
             <div className="icons-last">
@@ -108,7 +108,7 @@ function Content() {
               </div>
 
               {/* Subtitle */}
-              <p className="subtitle">February 2025</p>
+              <p className="subtitle font-medium">February 2025</p>
 
               {/* Progress Circle */}
               <div className="progress-container2">
@@ -123,11 +123,11 @@ function Content() {
               <div className="status-container">
                 <div className="status-item">
                   <span className="status-indicator green"></span>
-                  <p>Successful</p>
+                  <p className="text-[#545454]">Successful</p>
                 </div>
                 <div className="status-item">
                   <span className="status-indicator red"></span>
-                  <p>Pending</p>
+                  <p className="text-[#545454]">Pending</p>
                 </div>
               </div>
 

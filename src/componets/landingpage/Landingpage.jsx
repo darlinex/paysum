@@ -7,7 +7,7 @@ import WhatWeDo from './WeDo';
 import ContactUs from './ContactUs';
 import Requestdemo from './Requestdemo';
 import Footer from '../Layout/Footer';
-import SeePricing from '../seepricing/SeePricing';
+// import SeePricing from '../seepricing/SeePricing';
 function LandingPage(){    
     return (<>
 
@@ -19,7 +19,7 @@ function LandingPage(){
     <Choose/>
     <ContactUs/>
     <Requestdemo/>
-    <SeePricing/>
+    {/* <SeePricing/> */}
     
     <Footer/>
     </>

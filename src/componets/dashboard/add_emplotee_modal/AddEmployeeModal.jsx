@@ -1,41 +1,61 @@
-import { X } from "lucide-react"; // Fixed import
+import { X } from "lucide-react"; 
 import React, { useState } from "react";
 
-function AddEmployeeModal({ setEmployees, setShowModal }) {
+import './AddEmployee.css'
+
+function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) {
     const [empDetails, setEmpDetails] = useState({
         fullName: "",
         email: "",
         accountNumber: "",
-        HireDate: "",
+        HireDate: "", // Fixed: lowercase "h"
         department: "",
         employmentType: "",
         jobTitle: "",
         bankName: "",
-        salary: ""
+        grossPay: 0,
     });
 
-    const employeedDetailsArray = Object.keys(empDetails);
+    const employeeFields = [
+        { key: "fullName", label: "Name", type: "text" },
+        { key: "email", label: "Email", type: "email" },
+        { key: "accountNumber", label: "Account Number", type: "text" },
+        { key: "HireDate", label: "Hire Date", type: "date" },
+        { key: "department", label: "Department", type: "text" },
+        { key: "employmentType", label: "Employment Type", type: "text" },
+        { key: "jobTitle", label: "Job Title", type: "text" },
+        { key: "bankName", label: "Bank Name", type: "text" },
+        { key: "grossPay", label: "Gross Pay", type: "number" },
+    ];
 
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setEmpDetails((prev) => ({ ...prev, [name]: value }));
-    }
+
+        function handleChange(e) {
+            const { name, value, type } = e.target; 
+            setEmpDetails((prev) => ({
+                ...prev,
+                [name]: type === "number" ? Number(value) : value, // Convert numbers properly
+            }));
+        }
+        
 
     function handleSubmit(e) {
         e.preventDefault();
-        setEmployees((prev) => [...prev, empDetails]);
-        console.log(empDetails);
-
+        setEmployees((prev) => {
+            const updatedEmployees = [...prev, empDetails];
+            setFilteredEmployees(updatedEmployees); // 🔥 Update filteredEmployees
+            return updatedEmployees;
+        });
         // Reset form fields after submission
         setEmpDetails({
             fullName: "",
             email: "",
             accountNumber: "",
-            HireDate: "",
+            HireDate: "", 
             department: "",
             employmentType: "",
             jobTitle: "",
-            bankName: ""
+            bankName: "",
+            grossPay: 0
         });
 
         setShowModal(false); // Close modal after submission
@@ -43,30 +63,47 @@ function AddEmployeeModal({ setEmployees, setShowModal }) {
 
     return (
         <div className="h-screen w-screen fixed inset-0 backdrop-blur-sm flex justify-center items-center">
-  
-                <button
-                    onClick={() => setShowModal(false)}
-                    className="absolute top-4 right-4 text-gray-600 hover:text-gray-800"
-                >
-                    <X size={24} />
-                </button>
-                <form className="space-y-2" onSubmit={handleSubmit}>
-                    {employeedDetailsArray.map((field, index) => (
+            <button
+                onClick={() => setShowModal(false)}
+                className="absolute top-4 right-4 text-gray-600 hover:text-gray-800"
+            >
+                <X size={24} />
+            </button>
+        <div className="modal-div rounded-md">
+
+                <div className="add-employee-text">
+                            <p className=" font-bold text-3xl flex items-center justify-center">Add Employee Details</p>
+                </div>
+
+
+
+            <form 
+                className="space-y-4 grid grid-cols-3 gap-6  p-6 rounded-lg shadow-lg" 
+                onSubmit={handleSubmit}
+            >
+               
+                {employeeFields.map(({ key, label, type }) => (
+                    <div key={key} className="flex flex-col">
+                        <label className="font-bold text-lg mb-1">{label}:</label>
                         <input
-                            key={index}
-                            type="text"
-                            name={field}
-                            placeholder={field.toUpperCase()}
+                            type={type}
+                            name={key}
                             className="block w-full p-2 border border-gray-300 rounded-md"
                             onChange={handleChange}
-                            value={empDetails[field]}
+                            value={empDetails[key]}
+                            required
                         />
-                    ))}
-                    <button type="submit" className="w-full p-2 mt-4 bg-blue-500 text-white rounded-md m-10">
-                        Create Employee
-                    </button>
-                </form>
+                    </div>
+                ))}
 
+                <button
+                    type="submit"
+                    className="col-span-3 py-2 bg-[#FF7943] text-white font-semibold rounded-md hover:bg-[#e76c38] transition duration-200"
+                >
+                    Create Employee
+                </button>
+            </form>
+        </div>
         </div>
     );
 }

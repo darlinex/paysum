@@ -1,0 +1,19 @@
+.table-fields{
+    padding: 20px;
+    display: flex;
+   
+    
+}
+
+.table-fields div{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.payroll-ready2{
+    background-color: #34C7591A;
+    color: #34C759;
+    padding: 8px 36px 3px 6px;
+}
+
