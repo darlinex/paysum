@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* color: #00294A; */
 }
 
 /* Container for the section */
@@ -68,8 +69,13 @@
 }
 
 /* Section title */
-.why-choose-p {
+.why_choose_p {
     color: rgba(255, 121, 67, 1);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.why_pay {
+    color: #00294A;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -109,13 +115,19 @@
     font-size: 14px;
     line-height: 1.6;
 }
-
+.text_head{
+    color: #00294A;
+}
 /* Responsive styling */
 @media (max-width: 1024px) {
     .chooseUs {
-        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column-reverse;
         text-align: center;
         gap: 50px;
+        padding-right: 0;
     }
 
     .man-circle-square, .why-us-text {
@@ -123,7 +135,10 @@
     }
 
     .why-us-text {
+        display: flex;
+        justify-content: center;
         align-items: center;
+        width: 100%;
     }
 
     .div-choose {
@@ -132,15 +147,72 @@
     }
 
     .square-choose-us {
-        width: 90%;
+        width: 30%;
     }
 
+   
+    .man-circle{
+        position: relative;
+        right: 30%;
+        top: -90%;
+        /* display: none; */
+       
+    }
+    .circle-choose-us {
+        position: absolute;
+        left: 290px;
+        bottom: -5px;
+       
+    }
+
+
+
+
+
     .man-choose-us {
-        width: 100%;
+        max-width: 80%; /* Adjust image size for responsiveness */
+        width: auto;
+    }
+
+    .man-circle {
+        right: 0;
+        top: -60px;
     }
 
     .circle-choose-us {
         right: 0;
-        bottom: -20px;
+        bottom: -5px;
     }
+    .why-choose-p2{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center ;
+        text-align: center;
+        width: 100%;
+        max-width: 600px; /* Optional: Limits width for readability */
+    margin: 0 auto; 
+    gap: 30px;
+        margin-left: 5%;
+       
+    }
+    .div-choose{
+        display: flex;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center ;
+        text-align: center;
+        width: 100%;
+        max-width: 600px; /* Optional: Limits width for readability */
+    margin: 0 auto; 
+    gap: 30px;
+        /* margin-left: 5%; */
+        
+    }
+    .small-circle{
+        display: none;
+    }
+  
 }

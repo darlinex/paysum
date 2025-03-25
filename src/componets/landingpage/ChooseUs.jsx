@@ -19,19 +19,22 @@ function Choose() {
 
       {/* Right side - Text section */}
       <div className="why-us-text">
-        <p className="why-choose-p">WHY CHOOSE US?</p>
-        <h2>Why Paysum?</h2>
+        {/* <div className="why-choose-p3"> */}
+        <p className="why_choose_p " text-bold>WHY CHOOSE US?</p>
+        <h2 className="why_pay">Why Paysum?</h2>
+
         <p className="why-choose-p2">
           Businesses grow and evolve, your payroll should too. We eliminate manual
           calculations, tax worries, and compliance headaches so you can focus on
           scaling.
         </p>
-
+        {/* </div> */}
+        
         {/* Feature sections */}
         <div className="div-choose">
           <div className="small-circle"></div>
           <div className="text-p">
-            <p className="text-head">Seamless Automation And Flexibility</p>
+            <p className="text_head ">Seamless Automation And Flexibility</p>
             <p className="div-choose-p">
               Our clients enjoy automated salary calculations, payslip generation, and 
               distribution with more flexibility than the manual system.
@@ -42,7 +45,7 @@ function Choose() {
         <div className="div-choose">
           <div className="small-circle"></div>
           <div className="text-p">
-            <p className="text-head">We Grow With You</p>
+            <p className="text_head">We Grow With You</p>
             <p className="div-choose-p">
               As our clients grow and evolve, we do too. With an increase in staff 
               numbers and adjustments to their pay structure, we are with you every 
@@ -54,13 +57,14 @@ function Choose() {
         <div className="div-choose">
           <div className="small-circle"></div>
           <div className="text-p">
-            <p className="text-head">Full Compliance</p>
+            <p className="text_head">Full Compliance</p>
             <p className="div-choose-p">
               With us, you have nothing to worry about regarding tax compliance 
               and statutory regulations.
             </p>
           </div>
         </div>
+
       </div>
     </div>
   );

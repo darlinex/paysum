@@ -36,17 +36,17 @@ const Footer = () => {
                     
                     </div>
 
-                    {/* Quick Links */}
-                    <div className="footer-links">
-                        <p>Quick Links</p>
-                        <ol className="ol-links-footer">
-                            <li>Home</li>
-                            <li>Pathways</li>
-                            <li>Testimonies</li>
-                            <li>Contact Us</li>
-                            <li>FAQs</li>
-                        </ol>
-                    </div>
+                            {/* Quick Links */}
+                 <div className="footer-links">
+                    <p className='footer-links-p'>Quick Links</p>
+                    <ol className="ol-links-footer">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                   </ol>
+             </div>
+
 
                     <div className="legal-notice">
                         <p className="p-legal-notice">Legal Notices </p>
@@ -56,8 +56,8 @@ const Footer = () => {
 
                     {/* Social Media */}
                     <div className="footer-social">
-                        <p>Follow Us</p>
-                        <div className="social-icons">
+                        <p className='social-p'>Follow Us</p>
+                        <div className="social_icons">
                             < FiFacebook className="icon"/>
                             <CiInstagram className="icon"/>
                             <BsTwitterX  className="icon"/>

@@ -5,13 +5,14 @@ import { authInstance } from '../axios/axiosinstance';
 
 function EmployeeTile({ employee }) {
     function runPayroll(e) {
+        const empId = { employeeId: parseInt(e.target.id) }
         console.log(e.target.id)
-        authInstance.post("/payroll/", { "employeeId": e.target.id }).then((res) => {
-            console.log(res)
+        authInstance.post("/payroll/", empId).then((res) => {
+            console.log(res.data)
         })
     }
 
-    
+
 
     return (
         <div className=' table-fields  flex justify-between border-b border-gray-400  items-center'>

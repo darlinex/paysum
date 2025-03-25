@@ -59,13 +59,19 @@ function NavBar() {
                 </div>
 
                 <div className="links">
-                    <ul>
-                        <li className="nav-links">About us</li>
-                        <li className="nav-links">Services</li>
-                        <li className="nav-links">Contact Us</li>
-                        
-                    </ul>
-                </div>
+    <ul>
+        <li className="nav-links">
+            <a href="#about">About us</a>
+        </li>
+        <li className="nav-links">
+            <a href="#services">Services</a>
+        </li>
+        <li className="nav-links">
+            <a href="#contact">Contact Us</a>
+        </li>
+    </ul>
+</div>
+
 
                 <div className="button">
                     <Link to={"/login"}>
@@ -78,7 +84,7 @@ function NavBar() {
                     </Link>
                 </div>
 
-                <RxHamburgerMenu  onClick={toggleMenu} className='md:hidden'/>
+                <RxHamburgerMenu  onClick={toggleMenu} className="md:hidden hamburger"/>
                    
                 
 
@@ -91,15 +97,33 @@ function NavBar() {
                     animate = {{y : 0}}
                     transition={{ delay: 0.2, duration:0.5, stiffness: 120, type: 'spring'}}
                     exit={{opacity: 0, delay: 0.2, duration:0.5}}
-                    className='fixed inset-0 h-[50%] w-ful m-20 bg-black text-white bg-opacity-50 z-[4100000]'>
-                        <TbLetterX  className='absolute right-4 top-4' color='white' onClick={toggleMenu}/>
+                    className='fixed inset-0 h-[60%] w-full 
+                    backdrop-blur-sm mt-20 text-white bg-opacity-50 z-[2000]'>
+                        <TbLetterX color='black' size={30}  className=" letter_x absolute right-8 top-6 cursor-pointer z-50" onClick={toggleMenu}/>
 
                         <div>
-                            <ul>
-                                <li>About us</li>
-                                <li>Services</li>
-                                <li>Contact us </li>
-                            </ul>
+                        <ul className='motion-ul'>
+    <li className='motion-li'>
+        <a href="#about">About us</a>
+    </li>
+    <li className='motion-li'>
+        <a href="#services">Services</a>
+    </li>
+    <li className='motion-li'>
+        <a href="#contact">Contact us</a>
+    </li>
+</ul>
+
+
+                            <div className="button-motion">
+                      <Link to={"/login"}> 
+                       
+                       <button className="button3">Sign in</button>
+                       </Link> 
+                       <Link to={"/demo"}>
+                        <button className="button4">Register Now</button>
+                        </Link>
+                    </div>
                         </div>
                     </motion.div>
 

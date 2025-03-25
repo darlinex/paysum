@@ -7,9 +7,9 @@ import '../landingpage/Wedo.css'
 function WhatWeDo(){
 
     return(
-        <div className="what-we-do-full-div">
+        <div className="what-we-do-full-div" id="services">
             <img src={square3} alt="" className="what-we-do-square"/>
-            <div className="what-we-do">
+            <div className="what-we-do text-[#00294A] text-medium">
                 <p className="what-we-do-first-p">WHAT WE DO</p>
                 <h3>Our Services</h3>
                 <p className="secondp">We offer the luxury of automation in salary calculation, employee management and payslip <br /> generation. Giving room for growth and scalability for SMEs</p>
