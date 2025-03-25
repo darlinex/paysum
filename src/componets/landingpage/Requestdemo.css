@@ -1,43 +1,79 @@
-.request_container{
+/* Container */
+.request_container {
     width: 100%;
-    height: 200px;
+    /* min-height: 100vh; */
     background-color: #003049;
     background-image: url('../../assets/Demo_background.png');
     background-position: center;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centers content vertically */
+    padding: 20px;
 }
 
-.request_container h2{
+/* Heading */
+.request_container h2 {
     color: white;
     text-align: center;
-    padding-top: 30px;
-    font-weight: 500;
+    font-weight: 600; /* Bolder text */
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
 
-.request_container p{
+/* Paragraph */
+.request_container p {
     color: white;
     text-align: center;
     font-size: 14px;
-    font-weight: 200;
-    margin-top:10px;
-
+    font-weight: 300; /* Adjusted for better compatibility */
+    max-width: 480px;
+    margin: 0 auto; /* Centers text properly */
 }
 
-.demo_btn{
-   padding:10px 40px;
-   background-color: #ff7943;
-   color: white;
-   border-radius: 20px;
-   border: none;
-  margin-left: 45%;
-  margin-top: 30px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  z-index: 1;
+/* Centering Request Text */
+.request_p {
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    margin: 10px auto;
 }
 
+/* Button */
+.demo_btn {
+    padding: 12px 40px;
+    background-color: #ff7943;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    position: relative; /* Ensures z-index works */
+    z-index: 10; /* Higher to avoid layering issues */
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 20px; /* Adds spacing */
+}
 
-
+/* Button Hover Effect */
 .demo_btn:hover {
     transform: scale(1.1);
-  }
+    background-color: #e06630;
+}
+
+/* Responsive Fixes */
+@media (max-width: 1024px) {
+    .request_container h2 {
+        font-size: 1.5rem;
+    }
+
+    .request_container p {
+        font-size: 13px;
+    }
+
+    .demo_btn {
+        font-size: 14px;
+        padding: 10px 30px;
+    }
+}

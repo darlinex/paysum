@@ -82,7 +82,7 @@ const Demo = () => {
       <h1 className="demo_intro">Choose the convenience of automation</h1>
       <p className="demo_intro2">
         See why SMEs rely and trust us to handle their payroll calculation, employee management,
-        <br />
+       
         and payslip generation. Switch to an automated and convenient lane.
       </p>
 

@@ -12,57 +12,45 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Fix alignment issue */
+    align-items: flex-start; /* Keeps alignment for large screens */
     padding: 20px 5%;
-    gap: 30px; /* Increased gap for better spacing */
+    gap: 30px; 
 }
-
-/* Set equal widths for all divs inside .footer-div */
-.footer-div {
-    /* flex: 1;  
-    min-width: 200px;   */
-    display: flex;
-    flex-direction: row;
-    
-    justify-content: space-between;
-    padding-right: 170px;
-    padding-left: 70px;
+.p-legal-notice{
+    color: #00294A !important;
+    font-weight: bold;
 }
-
-.footer-address p {
-    color: rgba(84, 84, 84, 1);
+.footer-links-p{
+    color: #00294A !important;
+    font-weight: bold;
 }
-
-.ol-links-footer li {
-    color: rgba(84, 84, 84, 1);
+.social-p{
+    color: #00294A !important;
+    font-weight: bold;
 }
-
-.legal-notice-p {
-    color: rgba(84, 84, 84, 1);
-}
-
-.footer-links p {
-    color: rgba(0, 41, 74, 1);
-}
-
-.p-legal-notice {
-    color: rgba(39, 48, 67, 1);
-}
-
+.footer-address, 
+.footer-links, 
+.legal-notice, 
 .footer-social {
-    color: rgba(39, 48, 67, 1);
-}
-
-.footer-address {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
 }
 
+.footer-address p, 
+.ol-links-footer li, 
+.legal-notice-p, 
+.footer-links p, 
+.p-legal-notice, 
+.footer-social {
+    color: rgba(84, 84, 84, 1);
+}
+
+/* Contact Information */
 .call, .email {
     display: flex;
     flex-direction: row;
-    align-items: center; /* Align icons and text properly */
+    align-items: center;
     gap: 10px;
 }
 
@@ -74,12 +62,7 @@
     color: rgba(255, 121, 67, 1);
 }
 
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
+/* Footer Links */
 .ol-links-footer {
     list-style: none;
     display: flex;
@@ -87,19 +70,8 @@
     gap: 18px;
 }
 
-.legal-notice {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.footer-social {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.social-icons {
+/* Social Icons */
+.social_icons {
     display: flex;
     flex-direction: row;
     gap: 20px;
@@ -107,44 +79,69 @@
     font-size: 20px;
 }
 
-.social-icons:hover {
+.social_icons:hover {
     color: rgba(255, 121, 67, 1);
 }
 
-/* Responsive Styling */
-@media screen and (max-width: 700px) {
-    .footer-div {
-        flex-direction: column;
-        align-items: center;
-        text-align: center; /* Centers text in smaller screens */
-    }
-
-    .address, .footer-links, .legal-notice, .footer-social {
-        width: 100%;
-    }
-}
+/* Below Footer Section */
 .bellow-footer {
     display: flex;
-    justify-content: center;  /* Centers text horizontally */
-    align-items: center;      /* Centers text vertically */
-    padding: 15px 0;          /* Adds space inside the box */
-    position: relative;       /* Needed for pseudo-element positioning */
+    justify-content: center;  
+    align-items: center;      
+    padding: 15px 0;          
+    position: relative;       
 }
 
 .bellow-footer::before {
     content: "";              
     position: absolute;
-    top: 0;                   /* Places border at the top */
-    left: 50%;                /* Starts at the center */
-    width: 90%;               /* Adjust to make the border shorter */
-    height: 2px;              /* Border thickness */
-    background-color: rgba(222, 222, 222, 1); /* Border color */
-    transform: translateX(-50%); /* Ensures the border remains centered */
+    top: 0;                   
+    left: 50%;                
+    width: 90%;               
+    height: 2px;              
+    background-color: rgba(222, 222, 222, 1);
+    transform: translateX(-50%);
 }
 
 .footer-copy {
-    color: rgba(84, 84, 84, 1); /* Text color */
-    font-size: 14px; /* Font size */
-    text-align: center; /* Ensures text stays centered */
+    color: rgba(84, 84, 84, 1);
+    font-size: 14px;
+    text-align: center;
 }
 
+/* 🌍 Responsive Design: Center everything on mobile */
+@media screen and (max-width: 1024px) {
+    .footer-div {
+        flex-direction: column;
+        align-items: center; /* Centers all elements */
+        text-align: center; /* Ensures all text is centered */
+        padding: 0;
+        margin: 0;
+    }
+
+    .foot-logo {
+        margin-left: 80px;
+        margin-top: 20px;
+        padding: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer-address, 
+    .footer-links, 
+    .legal-notice, 
+    .footer-social {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ol-links-footer {
+        align-items: center; /* Centers the links */
+    }
+
+    .social-icons {
+        justify-content: center; /* Centers social media icons */
+    }
+}

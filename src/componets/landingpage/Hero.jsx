@@ -7,14 +7,14 @@ import square1 from '../../assets/Square1.png'
 import square2 from '../../assets/Square2.png'
 import circle1 from '../../assets/Circle1.png'
 import circle2 from '../../assets/Circle2.png'
-import '../landingpage/Hero.css'
+import './Hero.css'
 
 function HeroSection() {
     return (
-            <div className="herosection ">
-                <div className="left-side">
-                    <h1>Simple and convenient payroll system for SMEs.</h1>
-                    <p>Seamlessly automate, document and manage payroll 
+            <div className="herosection " id="home">
+                <div className="left-side" >
+                    <h1 className="font-medium">Simple and convenient payroll system for SMEs.</h1>
+                    <p className="text-white">Seamlessly automate, document and manage payroll 
                         calculations and employee details. Embrace convenience,
                         affordability and organization with our payroll system. </p>
                     <div className="herobtns">

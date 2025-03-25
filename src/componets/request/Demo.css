@@ -1,197 +1,262 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+h1{
+  font-weight: bolder;
+  font-size: 1.3em;
 }
 
 .demo_container {
-    width: 100%;
-    height: 130vh; /* Adjusted height */
-    background-color: #fafafa;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 50px;
+  width: 100%;
+  min-height: 130vh; /* Ensures flexibility in height */
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
 }
 
-.demo_intro{
-    color: #00294A;
-    text-align: center;
-    margin-top: 50px;
+.demo_intro {
+  color: #00294A;
+  text-align: center;
+  margin-top: 50px;
 }
 
-.demo_intro2{
-    color: #00294A;
-    text-align: center;
-    margin-top: 20px;
+.demo_intro2 {
+  color: #545454;
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 700px;
 }
 
 .demo_cont {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    padding: 50px;
-    /* border: 1px solid brown; */
-    /* margin-top: 80px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 50px;
 }
 
 .pic_cont {
-    width: 400px;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .entre {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Form Styling */
 .form_cont {
-    width: 600px;
-    height: auto;
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
-
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .form1, .form2 {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 label {
-    font-size: 14px;
-    color: #333;
+  font-size: 14px;
+  color: #333;
 }
 
 input, select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    /* background-color: white; */
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .radio-group {
-    display: flex;
-    gap: 10px;
-    margin-top: 5px;
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
 }
 
 .demo_btn2 {
-    width: 200px;
-    background-color: #ff7943;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    margin-left: 32%;
+  width: 200px;
+  background-color: #ff7943;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  align-self: center;
 }
 
-
-
-.terms{
-    color: #8a8a8a;
-    font-size: 12px;
-    font-family: 'montserrat';
-    text-align: center;
+.terms {
+  color: #8a8a8a;
+  font-size: 12px;
+  text-align: center;
 }
 
-/* input[type="radio"] {
-    accent-color:#ff7943; 
-   
-    
-  } */
-
-  input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-
 .radio-group {
+  display: flex;
+  gap: 10px;
+  padding-top: 40px;
+  align-items: center;
+}
+
+.custom-radio input {
+  display: none;
+}
+
+.custom-radio span {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  border: 1px solid #ff7943;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 6px;
+  background-color: white;
+  transform: translateY(2px);
+}
+
+.custom-radio input:checked + span::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background-color: #ff7943;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.password-container .password-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #666;
+}
+
+.password-container .password-icon:hover {
+  color: #ff7943;
+}
+
+  
+@media (max-width: 1024px) {
+
+  .demo_container *{
+    margin: 0 ;
+    padding: 0 !important;
+  }
+  .demo_container {
     display: flex;
-    gap: 10px;
-    padding-top: 40px;
+    text-align: center;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px !important;
+  }
+
+  .demo_cont {
+    flex-direction: column-reverse;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .demo_intro {
+    width: 100%;
+    font-size: 2rem;
+    margin-top: 30% ;
+  }
+
+  /* Correcting class name from `.form-cont` to `.form_cont` */
+  .form_cont {
+    display: flex;
+    flex-direction: column; 
+
+    align-items: start;
+    justify-content: start;
+    text-align: start;
+    width: 100%;
+    /* max-width: 1024px; */
     
   }
-  
-  /* Hide default radio button */
-  .custom-radio input {
-    display: none;
-   
-   
+
+  /* Ensure form elements take full width */
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
-  
-  /* Custom radio button outer circle */
-  .custom-radio span {
-    width: 14px;
-    height: 14px;
-    display: inline-block;
-    border: 1px solid #ff7943; /* Outer ring color */
-    border-radius: 50%;
-    position: relative;
-    margin-right: 6px;
-    background-color: white; /* Background color */
-    transform: translateY(2px);
-  }
-  
-  /* Inner circle when checked */
-  .custom-radio input:checked + span::after {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background-color: #ff7943; /* Inner dot color */
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+ 
+  label{
+    text-align: start;
+    font-weight: bold;
+    font-size: 1.4rem;
 
   }
-  
-  .password-container {
-    position: relative;
-    display: flex;
-    align-items: center;
+  input{
     width: 100%;
-  }
-  
-  .password-container input {
-    width: 100%;
-    padding-right: 40px; /* Ensure space for the icon */
-    padding: 10px;
-    border: 1px solid #ccc;
+    height: 50px;
+    max-width: 100%;
+    border: 1px solid #B0B0B0;
     border-radius: 5px;
+   
   }
-  
-  .password-container .password-icon {
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-    color: #666;
+  .form1, .form2{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
-  
-  .password-container .password-icon:hover {
-    color: #ff7943; /* Change color on hover */
-  } 
-  
+
+  .terms{
+    margin-top: 20px;
+    font-size: 12.5px;
+  }
+  .demo_btn2{
+    
+      width: 100%; /* Make button take full width */
+      padding: 10px !important; /* Increase padding */
+      font-size: 18px;
+  }
+}

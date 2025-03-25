@@ -1,4 +1,4 @@
-.about-us-container{
+.about-us-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,58 +6,99 @@
     padding-bottom: 80px;
 }
 
-.dashboard-images{
+.dashboard-images {
     display: flex;
     position: relative;
     z-index: 2;
     align-items: center;
     padding-top: 85px;
-    padding-left: 83px;
-    width: 35em;
-    height: 25em;
+    padding-left: 83px; /* Adjusted for flexibility */
+    width: 100%;
+    max-width: 35em;
+    height: auto;
 }
 
-.vector-lines{
+.vector-lines {
     display: flex;
     align-items: center;
     position: absolute;
-    left: -30px;
-    bottom: -25px;
-    top: 270px;
-    
-
+    left: -30px; /* Adjusted for better responsiveness */
+    /* bottom: -25px; */
+    top: 250px;
     z-index: 1;
 }
 
-.about-us-text{
+.about-us-text {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding-top: 30px;
-    padding-right: 55px;
-
+    padding-right: 5%; /* Adjusted for flexibility */
 }
 
-.about-us-p{
+.about-us-p {
     color: rgba(255, 121, 67, 1);
 }
 
-.about-us-text h2{
+.about-us-text h2 {
     font-size: 2em;
 }
 
-/* rgba(89, 89, 89, 1)2 */
-
-.who-we-are-p{
+.who-we-are-p {
     color: rgba(89, 89, 89, 1);
 }
-
 
 * {
     font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
+    box-sizing: border-box; /* Uncommented for consistency */
 }
 
 
+@media screen and (max-width: 1024px) {
+   .about-us-container{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* padding: 10px; */
+   }
+.about-us-text h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.about-us-p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.who-we-are-p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.about-us-dashboards{
+    display: grid;
+    place-items: center;
+}
+
+.dashboard-images {
+    display: block; /* Ensures proper behavior */
+    
+    width: 100%;
+    max-width: 35em;
+    height: auto;
+    margin-right: 80px;
+}
+.vector-lines{
+    width: 100%;
+    max-width: 300px;
+    position: absolute;
+    top: 70%;
+}
+
+}

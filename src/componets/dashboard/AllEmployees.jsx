@@ -61,7 +61,7 @@ export default function AllEmployees() {
 
     function handleSubmit(e){
         e.preventDefault();
-        employees.grosspay = parseInt(employees.grosspay);
+        employees.grosspay = parseFloat(employees.grosspay).toFixed(2);
         console.log(employees)
         authInstance.post('/employee/', employees).then((res) => {
             console.log(res)
@@ -121,9 +121,12 @@ export default function AllEmployees() {
 
 
             <div>
-                <button onClick={handleSubmit}>
-                    Add Employees
+                <div className='run-payroll-div'>
+
+                <button onClick={handleSubmit} className='run-payroll-btn'>
+                    Run Payroll
                 </button>
+                </div>
                 {/* Pagination */}
                 <div className="pagination-container">
                     <button
