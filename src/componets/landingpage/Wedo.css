@@ -183,3 +183,13 @@
 
     z-index: 1;
 }
+
+@media screen and (max-width: 1024px) {
+    .card1{
+        height: 100%;
+    }
+    .card-special{
+        height: 100%;
+        max-height: 330px;
+    }
+}

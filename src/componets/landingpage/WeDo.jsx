@@ -18,7 +18,7 @@ function WhatWeDo(){
             </div>
 
             <div className="cards-for-div">
-                <div className="card1">
+                <div className="card1 card-special">
                     <h3>Salary Calculation & <br /> processing</h3>
                     <div>
                         <div className="check-div">
