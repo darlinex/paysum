@@ -36,7 +36,7 @@ export default function AllEmployees() {
 
 
     useEffect(() => {
-       console.log(employees)
+        console.log(employees)
     }, [employees]);
 
 
@@ -47,6 +47,8 @@ export default function AllEmployees() {
     }, [currentPage, filteredEmployees, employees]);
 
     const totalPages = Math.ceil(filteredEmployees.length / EMPLOYEES_PER_PAGE);
+
+
 
     const handleFilter = () => {
         let filtered = employees.filter(emp =>
@@ -59,7 +61,15 @@ export default function AllEmployees() {
         setCurrentPage(1);
     };
 
-    function handleSubmit(e){
+    function runPayroll(e) {
+        const empId = { employeeId: parseInt(e.target.id) }
+        console.log(e.target.id)
+        authInstance.post("/payroll/", empId).then((res) => {
+            console.log(res.data)
+        })
+    }
+
+    function handleSubmit(e) {
         e.preventDefault();
         employees.grosspay = parseFloat(employees.grosspay).toFixed(2);
         console.log(employees)
@@ -104,28 +114,54 @@ export default function AllEmployees() {
                 </div>
             )}
 
-            <div className='roll bg-gray-300 flex justify-between rounded-md font-medium text-[#00294A] items-center w-full'>
-                <div>Full Name</div>
-                <div>Role</div>
-                <div>Employment Type</div>
-                <div>Payroll Status</div>
-            </div>
+            <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-md">
+                <thead className="bg-gray-300 text-[#00294A] font-medium">
+                    <tr>
+                        <th className="p-3 text-left">Full Name</th>
+                        <th className="p-3 text-left">Role</th>
+                        <th className="p-3 text-left">Employment Type</th>
+                        <th className="p-3 text-left">Payroll Status</th>
+                        <th className="p-3 text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {currentEmployees.length > 0 ? (
+                        currentEmployees.map((employee, index) => (
+                            <tr key={index} className="border-b hover:bg-gray-100">
+                                <td className="p-3">{employee.fullName}</td>
+                                <td className="p-3">{employee.jobTitle}</td>
+                                <td className="p-3">{employee.employmentType}</td>
+                                <td className="p-3">{employee.payrollStatus || "Pending"}</td>
+                                <td className="p-3 text-center">
+                                    <button
+                                        id={employee.id}
+                                        className="bg-gray-100 shadow-md text-green-600 !px-4 !py-2 rounded-md hover:bg-green-200 transition"
+                                        onClick={runPayroll}
+                                    >
+                                        Run Payroll
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="5" className="p-5 text-center font-semibold text-gray-500">
+                                No employee found
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
 
-            {currentEmployees.length > 0 ? (
-                currentEmployees.map((emp, index) => (
-                    <EmployeeTile employee={emp} key={index} />
-                ))
-            ) : (
-                <p>No employee found</p>
-            )}
+
 
 
             <div>
                 <div className='run-payroll-div'>
 
-                <button onClick={handleSubmit} className='run-payroll-btn'>
-                    Run Payroll
-                </button>
+                    <button onClick={handleSubmit} className='run-payroll-btn'>
+                        Add Employee
+                    </button>
                 </div>
                 {/* Pagination */}
                 <div className="pagination-container">

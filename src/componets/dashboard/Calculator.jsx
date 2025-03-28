@@ -7,6 +7,7 @@ import { CiClock2 } from "react-icons/ci";
 import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import { authInstance } from '../axios/axiosinstance';
+import { Trash2Icon } from 'lucide-react';
 
 function CalculatorScreen() {
   const [payroll, setPayroll] = useState([]);
@@ -30,6 +31,18 @@ function CalculatorScreen() {
     getEmployees();
   }, []);
 
+
+  async function deleteEmp(id){
+    try{
+      const response = await authInstance.delete(`/payroll/${id}`)
+      if(response.status === 201 || response.status === 200){
+        console.log(response.data)
+        window.location.reload()
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
 
 
 
@@ -63,27 +76,42 @@ function CalculatorScreen() {
 
 
 
-      <div className='roll bg-gray-300 flex justify-between rounded-md font-medium text-[#00294A]'>
-        <div>Full Name</div>
-        <div>Email</div>
-        <div>Gross Pay</div>
-        <div>Deductions</div>
-        <div>Net Pay</div>
-      </div>
+      <table className="payroll-table w-full border-collapse bg-white rounded-lg overflow-hidden shadow-md">
+        <thead className="bg-[#FF7943] text-[#00294A] font-medium">
+          <tr>
+            <th className="p-3 text-left">Full Name</th>
+            <th className="p-3 text-left">Email</th>
+            <th className="p-3 text-left">Gross Pay</th>
+            <th className="p-3 text-left">Deductions</th>
+            <th className="p-3 text-left">Net Pay</th>
+            <th className="p-3 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {payroll.length > 0 ? (
+            payroll.map((emp, index) => (
+              <tr key={index} className="border-b hover:bg-gray-100">
+                <td className="p-3">{emp.employeeFullName}</td>
+                <td className="p-3">{emp.employee.email}</td>
+                <td className="p-3">{emp.grossPay}</td>
+                <td className="p-3">{emp.deductions}</td>
+                <td className="p-3">{emp.netPay}</td>
+                <td>
+                  <button className='bg-[#FF7943] flex gap-2 items-center !px-4 !py-2 text-white' onClick={()=>{deleteEmp(emp.id)}}>
+                    <Trash2Icon />
+                      Delete
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5" className="text-center">No employee found</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
 
-      {payroll.length > 0 ? (
-        payroll.map((emp, index) => (
-          <div className='flex w-full justify-between' key={index}>
-            <div>{emp.employeeFullName}</div>
-            <div>{emp.employee.email}</div>
-            <div>{emp.grossPay}</div>
-            <div>{emp.deductions}</div>
-            <div>{emp.netPay}</div>
-          </div>
-        ))
-      ) : (
-        <p>No employee found</p>
-      )}
 
       {/* Pagination */}
       <div className="pagination-container">

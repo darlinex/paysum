@@ -11,6 +11,7 @@ import '../Layout/Footer.css'
 import { BsTelephone } from "react-icons/bs";
 import Logos from '../../assets/Footer_logo.png'
 import { MdOutlineMailOutline } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -57,11 +58,11 @@ const Footer = () => {
                     {/* Social Media */}
                     <div className="footer-social">
                         <p className='social-p'>Follow Us</p>
-                        <div className="social_icons">
-                            < FiFacebook className="icon"/>
-                            <CiInstagram className="icon"/>
-                            <BsTwitterX  className="icon"/>
-                            <FaLinkedin className="icon"/>
+                        <div className='flex justify-between gap-5'>
+                            <Link to="https://www.facebook.com/share/1BxNH62UNL/?mibextid=wwXIfr" target='_blank'>< FiFacebook className="icon social_icons"/></Link>
+                            <Link to="#"><CiInstagram className="icon social_icons"/></Link>
+                            <Link to="https://x.com/paysumpr?s=21&t=Yk_VzQ8DGoSxSq0O7vAGrg" target='_blank'><BsTwitterX  className="icon social_icons"/></Link>
+                            <Link to="#"><FaLinkedin className="icon social_icons"/></Link>
                         </div>
                     </div>
                 
