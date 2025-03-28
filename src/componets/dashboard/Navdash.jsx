@@ -5,8 +5,10 @@ import { CiSearch } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { LogOutIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function Navdashhboard() {
+    const router = useNavigate()
     const [activeIcon, setActiveIcon] = useState(null);
     const [dropDown, setDropdown] = useState(null);
 
@@ -36,7 +38,7 @@ function Navdashhboard() {
                     className="flex gap-4 "
                     onClick={() => {
                         localStorage.removeItem("ACCESS_TOKEN")
-                        window.location.reload()
+                        router('/login')
                     }
                     }>
                         <LogOutIcon size={20}/>
