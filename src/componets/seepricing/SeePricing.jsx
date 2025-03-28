@@ -25,7 +25,9 @@ export default function SeePricing() {
     ];
 
     return (
-        <div className="min-h-[140vh] flex flex-col items-center text-center p-12 justify-center">
+        <div className="min-h-[140vh] flex flex-col items-center text-center p-12 justify-center ">
+            <div className='!p-20'>
+
             <h1 className="text-5xl font-bold">Paysum Plus</h1>
             <p className="text-lg mt-4 max-w-2xl">
                 Unlock Powerful Features and make payroll easier than ever! Whether you're just starting out or scaling, there's a plan for you.
@@ -33,8 +35,9 @@ export default function SeePricing() {
             <p className="text-md mt-2 max-w-2xl">
                 By subscribing to a plan, you support the Paysum mission to make payroll accessible to everyone.
             </p>
+            </div>
 
-            <div className="flex flex-col md:flex-row justify-center items-center gap-8 mt-12">
+            <div className=" cards flex flex-col md:flex-row justify-center items-center gap-8 mt-12 ">
                 {pricingPlans.map((plan, index) => (
                     <div
                         key={index}
@@ -53,7 +56,7 @@ export default function SeePricing() {
                             ))}
                         </div>
 
-                        <button className="mt-6 w-full bg-blue-600 text-white font-semibold p-3 rounded-lg hover:bg-blue-700 transition-all">
+                        <button className="mt-6 w-full bg-[#FF7943] text-white font-semibold !p-3 rounded-lg hover:bg-blue-700 transition-all">
                             Get Started
                         </button>
                     </div>
