@@ -8,7 +8,7 @@ import "./Dashcontent.css";
 function Content() {
   return (
     <div className="content">
-      <h1 className= "welcome_h1  text-[#00294A] ">Welcome Back, Admin</h1>
+      <h1 className="welcome_h1  text-[#00294A] ">Welcome Back, Admin</h1>
 
       <div className="everything">
         {/* First Section (4 Cards) */}
@@ -35,9 +35,10 @@ function Content() {
               </div>
             </div>
 
-            <button className="next-btn">
-              <MdNavigateNext />
-            </button>
+              <button className="next-btn">
+                <MdNavigateNext />
+              </button>
+
           </div>
 
           {/* Last Payroll Card */}
@@ -94,7 +95,7 @@ function Content() {
             </div>
           </div>
         </div>
-        
+
         {/* Second Section (Distributed Payslips Card) */}
         <div className="second-card">
           <div className="fifthcard">
