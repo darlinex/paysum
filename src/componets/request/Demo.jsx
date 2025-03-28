@@ -65,7 +65,7 @@ const Demo = () => {
       if (response.status === 200 || response.status === 201) {
         toast.success('Form submitted successfully!');
         setTimeout(() => {
-          navigate('/thanks'); // Redirect to success page
+          navigate('/'); // Redirect to success page
         }, 2000); // Wait 2 seconds before redirecting
       }
     } catch (error) {

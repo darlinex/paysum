@@ -4,6 +4,7 @@ import square3 from '../../assets/Square2.png'
 import circle2 from '../../assets/Circle2.png'
 // import { FaCheck } from "react-icons/fa";
 import '../landingpage/Wedo.css'
+import { Link } from "react-router-dom";
 function WhatWeDo(){
 
     return(
@@ -103,8 +104,12 @@ function WhatWeDo(){
                 <img src={circle2} alt="" className="circle-for-what-we-do"/>
             </div>
             <div className="contact-btn-div">
-
-            <button className="contact-btn">Contact us</button>
+        
+        
+            <button className="contact-btn">
+                <a href="#contact">Contact us</a>
+                </button>
+        
             </div>
         </div>
     )

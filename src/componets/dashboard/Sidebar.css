@@ -3,7 +3,7 @@
     height: 100vh; /* Full height of the viewport */
     /* background-color: rgba(0, 41, 74, 1); */
     color: white; /* Text color */
-    padding: 20px; /* Spacing inside the sidebar */
+    padding: 20px !important; /* Spacing inside the sidebar */
     box-sizing: border-box; /* Include padding in width/height */
     position: fixed; /* Fix the sidebar to the left */
     top: 0;
@@ -15,17 +15,19 @@
   }
 
   .entire-div{
-    padding: 23px;
+    padding: 23px  ;
   }
   
   .side-bar-logo {
     text-align: center; /* Center the logo */
     margin-bottom: 30px; /* Space below the logo */
+    
   }
   
   .side-bar-logo img {
     max-width: 100%; /* Ensure the logo fits */
     height: auto;
+    
   }
   
   .side-select {

@@ -35,6 +35,8 @@ export default function Payslip() {
   }, []); // Add dependency array to prevent infinite re-renders
 
   return (
+    <div className='div'>
+
     <div className='payslipp-div bg-[#E6EDF3] text-white'>
       <div className="view-payslip flex items-center justify-between">
         <h1 className="font-medium flex items-center text-[#00294A] text-lg">
@@ -46,30 +48,40 @@ export default function Payslip() {
           <IoMdArrowUp />
         </button>
       </div>
-
-      <div className="view-history">
-        <button>
-          <CiClock2 className="icon4" /> View History
-        </button>
       </div>
 
-      {/* Download CSV */}
-      {payslipUrlCSV && (
-        <button>
-          <a download="payslip.csv" href={payslipUrlCSV}>
-            Download CSV
-          </a>
-        </button>
-      )}
 
-      {/* Download PDF */}
-      {payslipUrlPDF && (
-        <button>
-          <a download="payslip.pdf" href={payslipUrlPDF}>
-            Download PDF
-          </a>
-        </button>
-      )}
+        <div className='div2'>
+
+
+          <div className="view-history2">
+            <button>
+              <CiClock2 className="icon4" /> View History
+            </button>
+          </div>
+
+          {(payslipUrlCSV || payslipUrlPDF) && (
+  <div className="download-buttons">
+        {payslipUrlCSV && (
+          <button>
+            <a download="payslip.csv" href={payslipUrlCSV}>
+              Download CSV
+            </a>
+          </button>
+        )}
+
+        {payslipUrlPDF && (
+          <button>
+            <a download="payslip.pdf" href={payslipUrlPDF}>
+              Download PDF
+            </a>
+          </button>
+        )}
+      </div>
+    )}
+        </div>
+    
     </div>
+
   );
 }

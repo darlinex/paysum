@@ -3,6 +3,7 @@
     padding: 8px;
 }
 
+
 .payroll{
     padding: 20px;
     background-color: #E6EDF3;
@@ -76,4 +77,10 @@
     position: relative;
     top: 1px; /* Adjusts vertical alignment slightly */
     right: 0;
+}
+@media screen and (max-width: 1024px) {
+    .calculator{
+        margin-left: 0px;
+    }
+    
 }
