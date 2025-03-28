@@ -31,7 +31,7 @@ function Content() {
                 <div className="legend-item">
                   <span className="not-ready1"></span> Not Ready
                 </div>
-                <p className="status-text">30 out of 40 employees ready for salary calculation.</p>
+                <p className="status-text">15 out of 20  employees ready for salary calculation.</p>
               </div>
             </div>
 
