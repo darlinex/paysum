@@ -295,3 +295,12 @@
     color: white;
     font-weight: bold;
 }
+
+@media screen and (max-width: 1024px) {
+    .employee-page{
+        padding: 0;
+        margin: 0 !important;
+    
+    }
+    
+}

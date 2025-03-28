@@ -8,7 +8,7 @@ import "./Dashcontent.css";
 function Content() {
   return (
     <div className="content">
-      <h1 className="text-[#00294A] p-89">Welcome Back, Admin</h1>
+      <h1 className= "welcome_h1  text-[#00294A] ">Welcome Back, Admin</h1>
 
       <div className="everything">
         {/* First Section (4 Cards) */}

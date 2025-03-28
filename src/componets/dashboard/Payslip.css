@@ -1,4 +1,4 @@
-.payslipp-div{
+ .div{
     margin-left: 280px;
     padding: 10px;
 }
@@ -6,4 +6,72 @@
 .text-white{
     padding: 8px 70px 15px 20px;
     border-radius: 5px;
+}
+
+.div2{
+    padding: 15px;
+}
+
+
+.view-history2 button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns text and icon to the left */
+    gap: 8px; /* Adds spacing between the icon and text */
+    padding: 12px 20px;
+    background-color: white;
+    color: #00294A;
+    border: 2px solid #00294A;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.view-history2 button:hover {
+    background-color: #00294A;
+    color: white;
+}
+
+.view-history2 .icon {
+    font-size: 1.2rem;
+}
+.download-buttons {
+    display: flex;
+   align-items: center;
+    justify-content: space-between;
+}
+
+.download-buttons button {
+    background-color: #FF7943;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.download-buttons button:hover {
+    background-color: #d65e30; /* Slightly darker orange on hover */
+}
+
+.download-buttons a {
+    text-decoration: none;
+    color: white;
+    display: block; /* Makes the entire button clickable */
+}
+.download-buttons{
+    padding-left: 0px;
+    padding-top: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+    .div{
+        margin-left: 0px;
+    }
+    
 }
