@@ -22,9 +22,9 @@ function HeroSection() {
                         
                         <button className="request-btn">Request demo</button>
                         </Link>
-                        <Link to={"/seepricing"}>
+                        <Link to={"/register"}>
                         
-                        <button className="button1">See pricing </button>
+                        <button className="button1"> Register Now </button>
                         </Link>
                         
                        
