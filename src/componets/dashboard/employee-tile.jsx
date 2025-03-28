@@ -4,13 +4,7 @@ import './employee-tile.css'
 import { authInstance } from '../axios/axiosinstance';
 
 function EmployeeTile({ employee }) {
-    function runPayroll(e) {
-        const empId = { employeeId: parseInt(e.target.id) }
-        console.log(e.target.id)
-        authInstance.post("/payroll/", empId).then((res) => {
-            console.log(res.data)
-        })
-    }
+
 
 
 

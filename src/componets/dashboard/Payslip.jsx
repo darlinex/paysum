@@ -4,7 +4,7 @@ import { FiDownload } from "react-icons/fi";
 import { IoMdArrowUp } from "react-icons/io";
 import { CiClock2 } from 'react-icons/ci';
 import { authInstance } from '../axios/axiosinstance';
-
+import { BsBoxArrowUpRight } from "react-icons/bs";
 export default function Payslip() {
   const [payslipUrlCSV, setPayslipUrlCSV] = useState('');
   const [payslipUrlPDF, setPayslipUrlPDF] = useState('');
@@ -43,9 +43,9 @@ export default function Payslip() {
           Payslip - March 2025
         </h1>
 
-        <button className='text-white flex items-center justify-items-start gap-6 bg-[#FF7943]'>
-          <FiDownload />
-          <IoMdArrowUp />
+        <button className='text-white flex items-center justify-items-start gap-6 bg-[#FF7943] !px-6'>
+          Send Paysllip
+          <BsBoxArrowUpRight />
         </button>
       </div>
       </div>

@@ -41,15 +41,28 @@ function NavBar() {
                         </ul>
                     </div>
 
-                    <div className="button">
-                        <Link to={"/login"}>
+                    {!(localStorage.getItem("ACCESS_TOKEN")) ?
+                        (<div className="button">
+                            <Link to={"/login"}>
 
-                            <button className="button1">Sign in</button>
-                        </Link>
-                        <Link to={"/demo"}>
-                            <button className="button2">Request demo</button>
-                        </Link>
-                    </div>
+                                <button className="button1">Sign in</button>
+                            </Link>
+                            <Link to={"/demo"}>
+                                <button className="button2">Request demo</button>
+                            </Link>
+                        </div>) :
+                        <div className="button">
+                            <Link to={"/dashboard/home"}>
+                                <button className="button2"> dashboard </button>
+                            </Link>
+                            <button className="button2" onClick={() => {
+                                localStorage.removeItem("ACCESS_TOKEN")
+                                window.location.reload()
+                            }
+                            }> Log Out </button>
+                        </div>
+                    }
+
                 </nav>
 
                 {/* main hero section */}
@@ -77,16 +90,27 @@ function NavBar() {
                     </div>
 
 
-                    <div className="button">
-                        <Link to={"/login"}>
+                    {!(localStorage.getItem("ACCESS_TOKEN")) ?
+                        (<div className="button">
+                            <Link to={"/login"}>
 
-                            <button className="sign-in-btn">Sign in</button>
-                        </Link>
-                        <Link to={"/register"}>
-
-                            <button className="button2">Register now</button>
-                        </Link>
-                    </div>
+                                <button className="button1">Sign in</button>
+                            </Link>
+                            <Link to={"/demo"}>
+                                <button className="button2">Request demo</button>
+                            </Link>
+                        </div>) :
+                        <div className="button">
+                            <Link to={"/dashboard/home"}>
+                                <button className="button2"> Dashboard </button>
+                            </Link>
+                            <button className="button2" onClick={() => {
+                                localStorage.removeItem("ACCESS_TOKEN")
+                                window.location.reload()
+                            }
+                            }> Log Out </button>
+                        </div>
+                    }
 
                     <RxHamburgerMenu onClick={toggleMenu} className="md:hidden hamburger" />
 
@@ -119,15 +143,28 @@ function NavBar() {
                                     </ul>
 
 
-                                    <div className="button-motion">
-                                        <Link to={"/login"}>
+                                    {!(localStorage.getItem("ACCESS_TOKEN")) ?
+                                        (<div className="button-motion">
+                                            <Link to={"/login"}>
 
-                                            <button className="button3">Sign in</button>
-                                        </Link>
-                                        <Link to={"/demo"}>
-                                            <button className="button4">Register Now</button>
-                                        </Link>
-                                    </div>
+                                                <button className="button1">Sign in</button>
+                                            </Link>
+                                            <Link to={"/demo"}>
+                                                <button className="button2">Request demo</button>
+                                            </Link>
+                                        </div>) :
+                                        <div className="button-motion">
+                                            <Link to={"/dashboard/home"}>
+                                                <button className="button2"> Dashboard </button>
+                                            </Link>
+                                            <button className="button2" onClick={() => {
+                                                localStorage.removeItem("ACCESS_TOKEN")
+                                                window.location.reload()
+                                            }
+                                            }> Log Out </button>
+                                        </div>
+                                    }
+
                                 </div>
                             </motion.div>
 
