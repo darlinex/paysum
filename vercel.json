@@ -1,8 +1,5 @@
 {
-    "routes": [
-      {
-        "src": "/(?!register).*",
-        "dest": "/register"
-      }
-    ]
-  }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

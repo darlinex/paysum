@@ -51,7 +51,7 @@ export function ResponsiveNav() {
   const toggleSidebar = () => setMenuOpen(!menuOpen);
 
   return (
-    <div className="flex items-center justify-between md:hidden p-4 bg-[rgba(0,41,74,1)] text-white w-full fixed top-0 z-50">
+    <div className="flex items-center justify-between md:hidden p-4 bg-[rgba(0,41,74,1)] !text-white w-full fixed top-0 z-50">
       <img src={logo} alt="Logo" className="h-10" />
       <MenuIcon className="cursor-pointer" onClick={toggleSidebar} />
       <Sidebar isOpen={menuOpen} toggleSidebar={toggleSidebar} />
