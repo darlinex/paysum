@@ -43,10 +43,10 @@ export default function Payslip() {
           Payslip - March 2025
         </h1>
 
-        <button className='text-white flex items-center justify-items-start gap-6 bg-[#FF7943] !px-6'>
+        {/* <button className='text-white flex items-center justify-items-start gap-6 bg-[#FF7943] !px-6'>
           Send Paysllip
           <BsBoxArrowUpRight />
-        </button>
+        </button> */}
       </div>
       </div>
 
@@ -55,9 +55,9 @@ export default function Payslip() {
 
 
           <div className="view-history2">
-            <button>
+            {/* <button>
               <CiClock2 className="icon4" /> View History
-            </button>
+            </button> */}
           </div>
 
           {(payslipUrlCSV || payslipUrlPDF) && (
