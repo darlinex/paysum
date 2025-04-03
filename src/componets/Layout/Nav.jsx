@@ -35,17 +35,17 @@ function NavBar() {
                         <ul>
                             <li className="nav-links">About us</li>
                             <li className="nav-links">Services</li>
-                            <li className="nav-links">Pricing</li>
+
                             <li className="nav-links">Contact Us</li>
-                            <li className="nav-links">FAQs</li>
+
                         </ul>
                     </div>
 
-                    {!(localStorage.getItem("ACCESS_TOKEN")) ?
-                        (<div className="button">
+                    {/* {!(localStorage.getItem("ACCESS_TOKEN")) ?
+                        (<div className="button flex">
                             <Link to={"/login"}>
 
-                                <button className="button1">Sign in</button>
+                                <button className="">Sign in</button>
                             </Link>
                             <Link to={"/demo"}>
                                 <button className="button2">Request demo</button>
@@ -61,7 +61,7 @@ function NavBar() {
                             }
                             }> Log Out </button>
                         </div>
-                    }
+                    } */}
 
                 </nav>
 
@@ -91,10 +91,9 @@ function NavBar() {
 
 
                     {!(localStorage.getItem("ACCESS_TOKEN")) ?
-                        (<div className="button">
+                        (<div className="button flex">
                             <Link to={"/login"}>
-
-                                <button className="button1">Sign in</button>
+                                <button className="button11 hidden md:flex">Sign in</button>
                             </Link>
                             <Link to={"/demo"}>
                                 <button className="button2">Request demo</button>
@@ -131,13 +130,13 @@ function NavBar() {
 
                                 <div>
                                     <ul className='motion-ul'>
-                                        <li className='motion-li'>
+                                        <li className='motion-li text-[#FF7943]'>
                                             <a href="#about">About us</a>
                                         </li>
-                                        <li className='motion-li'>
+                                        <li className='motion-li text-[#FF7943]'>
                                             <a href="#services">Services</a>
                                         </li>
-                                        <li className='motion-li'>
+                                        <li className='motion-li text-[#FF7943]'>
                                             <a href="#contact">Contact us</a>
                                         </li>
                                     </ul>
@@ -146,11 +145,10 @@ function NavBar() {
                                     {!(localStorage.getItem("ACCESS_TOKEN")) ?
                                         (<div className="button-motion">
                                             <Link to={"/login"}>
-
                                                 <button className="button1">Sign in</button>
                                             </Link>
                                             <Link to={"/demo"}>
-                                                <button className="button2">Request demo</button>
+                                                <button className="request-btn ">Request demo</button>
                                             </Link>
                                         </div>) :
                                         <div className="button-motion">

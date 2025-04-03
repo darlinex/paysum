@@ -1,0 +1,13 @@
+.form-bulk{
+    padding: 60px;
+    width:  100%;
+    border: 1px solid #FF7943;
+}
+
+.addemp{
+    display: flex;
+    text-align: center;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
