@@ -3,11 +3,15 @@ import { FiFilter } from "react-icons/fi";
 import AddEmployeeModal from './add_emplotee_modal/AddEmployeeModal';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { IoIosAdd } from "react-icons/io";
-import EmployeeTile from './employee-tile';
+// import EmployeeTile from './employee-tile';
 import { IoClose } from "react-icons/io5";
 import './AllEmployees.css';
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { authInstance } from '../axios/axiosinstance';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { MdOutlineCloudUpload } from "react-icons/md";
+import  BulkUploadModal from './add_emplotee_modal/RunPayrollModal';
 
 export default function AllEmployees() {
     const EMPLOYEES_PER_PAGE = 10;
@@ -18,7 +22,8 @@ export default function AllEmployees() {
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [filters, setFilters] = useState({ name: '', role: '', employmentType: '', date: '' });
     const [currentPage, setCurrentPage] = useState(1);
-
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    
     useEffect(() => {
         async function getEmployees() {
             try {
@@ -33,23 +38,23 @@ export default function AllEmployees() {
         }
         getEmployees();
     }, []);
-
+    
 
     useEffect(() => {
         console.log(employees)
     }, [employees]);
-
-
+    
+    
     useEffect(() => {
         const indexOfLastEmployee = currentPage * EMPLOYEES_PER_PAGE;
         const indexOfFirstEmployee = indexOfLastEmployee - EMPLOYEES_PER_PAGE;
         setCurrentEmployees(filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee));
     }, [currentPage, filteredEmployees, employees]);
-
+    
     const totalPages = Math.ceil(filteredEmployees.length / EMPLOYEES_PER_PAGE);
-
-
-
+    
+    
+    
     const handleFilter = () => {
         let filtered = employees.filter(emp =>
             (!filters.name || emp.fullName.toLowerCase().includes(filters.name.toLowerCase())) &&
@@ -60,23 +65,66 @@ export default function AllEmployees() {
         setFilteredEmployees(filtered);
         setCurrentPage(1);
     };
-
+    
     function runPayroll(e) {
-        const empId = { employeeId: parseInt(e.target.id) }
-        console.log(e.target.id)
-        authInstance.post("/payroll/", empId).then((res) => {
-            console.log(res.data)
-        })
-    }
+        const empId = parseInt(e.target.id);
+        
+        authInstance.post("/payroll/", { employeeId: empId })
+        .then((res) => {
+            console.log(res.data);
+            toast.success("Payroll ran successfully!", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            
+            // Update payroll status dynamically
+            setEmployees((prevEmployees) =>
+                prevEmployees.map((emp) =>
+                    emp.id === empId ? { ...emp, payrollStatus: "Ready" } : emp
+        )
+    );
+    
+    setFilteredEmployees((prevFiltered) =>
+        prevFiltered.map((emp) =>
+            emp.id === empId ? { ...emp, payrollStatus: "Ready" } : emp
+)
+);
+})
+.catch((error) => {
+    console.error("Payroll error:", error);
+    toast.error("Failed to run payroll. Please try again.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            });
+        }
+        
+        
+        
+        function handleSubmit(e) {
+            e.preventDefault();
+            employees.grosspay = parseFloat(employees.grosspay).toFixed(2);
+            console.log(employees)
+            authInstance.post('/employee/', employees).then((res) => {
+                console.log(res)
+            })
+        }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        employees.grosspay = parseFloat(employees.grosspay).toFixed(2);
-        console.log(employees)
-        authInstance.post('/employee/', employees).then((res) => {
-            console.log(res)
-        })
-    }
+        function toggleOpen() {
+            setIsModalOpen(!isModalOpen)
+        };
 
     return (
         <div className='employee-page'>
@@ -91,6 +139,11 @@ export default function AllEmployees() {
                 <button className="add-employee-btn" onClick={() => setShowModal(true)}>
                     <IoIosAdd className="icon2" /> Add Employee
                 </button>
+                <button className="add-employee-btn"
+                onClick={toggleOpen}>
+                    <MdOutlineCloudUpload className="icon2" /
+                > Bulk Upload
+                </button>
                 <div className="filter-box" onClick={() => setShowFilterModal(true)}>
                     <FiFilter className="filter-icon" />
                     <span>Filter</span>
@@ -99,6 +152,7 @@ export default function AllEmployees() {
             </div>
 
             {showModal && <AddEmployeeModal setEmployees={setEmployees} setShowModal={setShowModal} setFilteredEmployees={setFilteredEmployees} />}
+            {isModalOpen && <BulkUploadModal setIsOpen={setIsModalOpen} />}
 
             {showFilterModal && (
                 <div className="filter-modal">

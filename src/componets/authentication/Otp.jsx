@@ -65,7 +65,7 @@ const Otp = () => {
   };
 
   return (
-    <div className="otp_container">
+    <div className="otp_containerr">
       <ToastContainer /> {/* For displaying toasts */}
       <div className="otp_bord">
         <h1>Verify your email</h1>
@@ -75,8 +75,9 @@ const Otp = () => {
         </p>
 
         <div className="otp_ver">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='form-otp'>
             {otp.map((digit, index) => (
+              
               <input
                 key={index}
                 id={`otp-${index}`}

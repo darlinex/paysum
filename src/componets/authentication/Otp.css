@@ -5,11 +5,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px; /* Ensures spacing on smaller screens */
 }
 
 .otp_bord {
-    width: 480px;
-    height: 440px;  /* Adjust height to match design */
+    width: 100%;
+    max-width: 480px; /* Prevents it from being too large on big screens */
+    height: auto; /* Allows height to adjust based on content */
     border: 0.5px solid #fa7643;
     background-color: #ffffff;
     border-radius: 15px;
@@ -18,7 +20,7 @@
 }
 
 .otp_bord h1 {
-    font-family: "montserrat",;
+    font-family: "Montserrat", sans-serif; /* Fixed font-family syntax */
     color: #00294a;
     font-size: 24px;
     font-weight: bold;
@@ -33,15 +35,21 @@
     text-align: start;
     margin-top: 15px;
 }
+
 .otp_ver {
     display: flex;
+    flex-direction: row; /* Keep inputs in a row */
     justify-content: center;
-    gap: 16px;  /* Increase gap for better spacing */
+    gap: 12px;
+    flex-wrap: wrap; /* Allow wrapping when needed */
     margin-top: 40px;
+    width: 100%;
 }
 
+
 .otpp {
-    width: 42px;  /* Increase size to match design */
+    width: 100%;
+    max-width: 50px; /* Slightly increased for better visibility */
     height: 72px;
     background-color: white;
     text-align: center;
@@ -51,20 +59,18 @@
     border: 2px solid #ccc;
     border-radius: 8px;
     transition: border 0.3s ease;
-    margin: 0 8px;  /* This ensures proper spacing */
 }
 
 .otpp:focus {
     border: 2px solid #fa7643;
 }
 
-
 .resend_msg {
     font-size: 16px;
-    font-family: "montserrat";
+    font-family: "Montserrat", sans-serif;
     color: #545454;
-   position: relative;
-   top: 35px;
+    margin-top: 20px; /* Adjusted spacing */
+    position: relative;
 }
 
 .resend_msg2 {
@@ -72,27 +78,42 @@
     font-weight: 400;
     cursor: pointer;
     font-size: 16px;
-   position: absolute;
-   top: 30px;
+    position: relative;
+    top: 5px;
 }
 
-
-.verify_btn{
-    padding-left:30px ;
-    padding-right: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+.verify_btn {
+    padding: 12px 30px;
     color: #fafafa;
     background-color: #fa7643;
-    margin-top: 100px;
+    margin-top: 50px; /* Reduced margin for better spacing */
     width: 100%;
+    max-width: 300px; /* Prevents it from being too wide */
     border-radius: 10px;
     transition: 0.3s ease;
 }
 
-.verify_btn:hover{
+.verify_btn:hover {
     background: white;
-    color: rgba(255, 121, 67, 1); /* Matching the primary color */
+    color: rgba(255, 121, 67, 1);
     border: 1.5px solid rgba(255, 121, 67, 1);
     transition: all 0.3s ease-in-out;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .otp_containerr{
+        height: 100%;
+        /* max-height: 20px; */
+    }
+     .form-otp{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Responsive wrapping */
+        gap: 12px;
+        justify-content: center;
+        margin-top: 40px;
+        width: 100%;
+        max-width: 320px; /* Prevents stretching */
+        
+    }
 }

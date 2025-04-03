@@ -35,7 +35,7 @@ ul{
 }
 
 .button{
-    display: flex;
+    /* display: flex; */
     align-items: center;
     gap: 16px;
 }
@@ -56,6 +56,13 @@ ul :hover{
 }
 
 .button1{
+    background: transparent;
+    border: 1.5px solid white;
+    border-radius: 100px;
+    padding: 8px 20px;
+    color: white;
+}
+.button11{
     background: transparent;
     border: 1.5px solid white;
     border-radius: 100px;

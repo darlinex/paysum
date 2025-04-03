@@ -1,6 +1,7 @@
 
 import React from 'react'
 import '../landingpage/Requestdemo.css'
+import { Link } from 'react-router-dom'
 
 const Requestdemo = () => {
   return (
@@ -11,7 +12,10 @@ const Requestdemo = () => {
                 Schedule a meet for a personalised demo specific to your business needs and goals.           
             </p>
         </div>
+        <Link to={"/demo"}>
+        
             <button className='demo_btn'>Request Demo</button>
+        </Link>
     </div>
   )
 }
