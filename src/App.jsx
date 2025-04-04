@@ -18,7 +18,7 @@ import AllEmployees from './componets/dashboard/AllEmployees';
 import Payslip from './componets/dashboard/Payslip';
 import SeePricing from './componets/seepricing/SeePricing';
 import ProtectedRoute from './utils/protectedRoutes';
-
+import PrivacyPolicy from './componets/landingpage/PrivacyPolicy';
 
 function App() {
 
@@ -33,6 +33,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="demo" element={<Demo />} />
           <Route path="seepricing" element={<SeePricing />} />
+          <Route path="privacy" element={<PrivacyPolicy />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -42,10 +43,11 @@ function App() {
             <Route path="home" element={<HomeScreen />} />
             <Route path="calculator" element={<CalculatorScreen />} />
             <Route path="allemployees" element={<AllEmployees />} />
-            <Route path="payslip" element={<Payslip />} />
+            {/* <Route path="payslip" element={<Payslip />} /> */}
           </Route>
         </Route>
         <Route path="/demo" element={<Demo />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/seepricing" element={<SeePricing />} />
 
         <Route path="/thanks" element={<Thankyoupage />} />

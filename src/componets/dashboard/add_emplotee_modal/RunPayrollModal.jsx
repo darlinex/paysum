@@ -36,8 +36,8 @@ function BulkUploadModal({ setIsOpen }) {
   }
 
   return (
-    <div className="h-screen w-screen backdrop-blur-sm fixed inset-0 grid place-content-center">
-      <XIcon className="absolute top-4 right-4 cursor-pointer" onClick={() => setIsOpen(false)} />
+    <div className="h-screen w-screen backdrop-blur-sm fixed inset-0 grid place-content-center ">
+      <XIcon className="absolute top-10 right-4 z-[40000000] cursor-pointer" color="black" size={30} onClick={() => setIsOpen(false)} />
       <form className=" form-bulk w-full md:w-[40%] bg-white flex flex-col gap-4 p-4 rounded-md shadow-md items-center justify-center mx-auto" onSubmit={uploadBulk}>
         <input type="file" accept=".csv" />
         <button type="submit" className= "addemp bg-[#00294A] text-white px-4 py-2 rounded-md text-center">

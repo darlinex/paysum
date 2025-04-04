@@ -15,7 +15,11 @@
     transition: background 0.3s ease;
 } */
 
-
+.div-resp{
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+}
 
 
 .add-employee-btn {
@@ -23,9 +27,23 @@
     align-items: center;
     gap: 8px; /* Adjust spacing between icon and text */
     padding: 10px 16px;
-    background-color: #00294a; /* Dark blue */
+    background-color:  #ff7943; /* Dark blue */
     color: white;
     border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+.add-employee-btn2 {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Adjust spacing between icon and text */
+    padding: 10px 16px;
+    background: transparent; /* Dark blue */
+    color:  #ff7943;
+    border: 1px solid #ff7943;
+    
     border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
@@ -302,5 +320,45 @@
         margin: 0 !important;
     
     }
+    table{
+        /* display: none; */
+    }
+    .top-table {
+        width: 100%;
+        /* display: none; */
+        /* max-width: 350px; */
+        display: grid;
+        
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
     
+    .top-table div {
+        /* background: #f3f3f3; */
+        /* padding: 10px; */
+        text-align: center;
+        /* border-radius: 8px; */
+    }
+    .employee{
+        width: 100%;
+        max-width: 50px;
+    }
+    .top-table > div:not(:last-child)::after {
+        display: none;
+        
+    }
+    .button-filter{
+        /* display: none; */
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .add-employee-btn{
+        padding: 7px;
+    }
+    .div-resp{
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+   
 }

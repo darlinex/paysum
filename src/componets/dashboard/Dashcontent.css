@@ -1,7 +1,12 @@
-.content{
-    margin-left: 260px;
-    padding: 23px;
+
+.content {
+  margin-left: 250px; /* Matches sidebar width */
+  width: calc(100% - 250px); /* Prevents it from going behind */
+  padding: 23px;
+  box-sizing: border-box;
+
 }
+
 .content h1{
   padding: 20px 0;
   font-weight: bold;
@@ -506,18 +511,21 @@ button:hover {
   align-items: end;
 }
 
-/* Mobile */
 @media screen and (max-width: 1024px) {
   .content{
+    /* display: none; */
     margin: 0 !important;
-    padding: 5% !important;
+    /* padding: 5% !important; */
+    
   }
   .everything {
     display: flex !important; /* Force override */
     flex-direction: column;
     gap: 1rem;
-    /* align-items: center !important;
-    justify-content: center !important; */
+   padding: 0 !important;
+   margin-right: 0 !important;
+   width: 100%;
+    
   }
 
   .first-div {
@@ -528,36 +536,27 @@ button:hover {
   }
 
   /* Optional: Reset alignment if needed */
-  .first-div, .everything {
-    align-items: stretch; /* Default flex behavior */
-  }
+  /* .first-div, .everything {
+    align-items: stretch; 
+  } */
 
-  .welcome_h1{
-    font-size: 50px !important;
-   
-  }
+ 
 
-  .payroll-card h3{
-    font-size: 3rem;
-  }
+ 
   .payroll-card{
     
-    padding: 40px !important;
     width: 100%;
-    max-width: 80%;
+    min-width: 100px;
     min-height: 100px !important;
     max-height: 500px !important;
     overflow: hidden;
   }
-  .ready1{
-    font-size: 500px !important;
-  }
-
+  
   .secondcard, .thirdcard, .fourthcard, .fifthcard{
     
-    padding: 40px !important;
+    
     width: 100%;
-    max-width: 80%;
+    min-width: 350px;
     min-height: 100px !important;
     max-height: 500px !important;
     overflow: hidden;

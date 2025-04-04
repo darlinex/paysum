@@ -31,7 +31,7 @@ const employees = [
 export default function EmployeeTable() {
   return (
     <div className="table-container">
-      <table>
+      <table className="table">
         <thead>
           <tr className="table-head">
             <th>Name</th>

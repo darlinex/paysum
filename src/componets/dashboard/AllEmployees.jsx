@@ -136,14 +136,17 @@ export default function AllEmployees() {
             </div>
 
             <div className='button-filter flex justify-between'>
+                <div className='div-resp'>
+
                 <button className="add-employee-btn" onClick={() => setShowModal(true)}>
                     <IoIosAdd className="icon2" /> Add Employee
                 </button>
-                <button className="add-employee-btn"
+                <button className="add-employee-btn2"
                 onClick={toggleOpen}>
                     <MdOutlineCloudUpload className="icon2" /
                 > Bulk Upload
                 </button>
+                </div>
                 <div className="filter-box" onClick={() => setShowFilterModal(true)}>
                     <FiFilter className="filter-icon" />
                     <span>Filter</span>
@@ -214,7 +217,7 @@ export default function AllEmployees() {
                 <div className='run-payroll-div'>
 
                     <button onClick={handleSubmit} className='run-payroll-btn'>
-                        Add Employee
+                        Save Employee
                     </button>
                 </div>
                 {/* Pagination */}
