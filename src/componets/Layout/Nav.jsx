@@ -124,11 +124,14 @@ function NavBar() {
                                 animate={{ y: 0 }}
                                 transition={{ delay: 0.2, duration: 0.5, stiffness: 120, type: 'spring' }}
                                 exit={{ opacity: 0, delay: 0.2, duration: 0.5 }}
-                                className='fixed inset-0 h-[60%] w-full 
+                                className='fixed inset-0 w-full bg-white h-full
                     backdrop-blur-sm mt-20 text-white bg-opacity-50 z-[2000]'>
                                 <TbLetterX color='black' size={30} className=" letter_x absolute right-8 top-6 cursor-pointer z-50" onClick={toggleMenu} />
 
                                 <div>
+                                    <div>
+
+
                                     <ul className='motion-ul'>
                                         <li className='motion-li text-[#FF7943]'>
                                             <a href="#about">About us</a>
@@ -140,6 +143,15 @@ function NavBar() {
                                             <a href="#contact">Contact us</a>
                                         </li>
                                     </ul>
+                                    <div className="button-motion">
+                                            <Link to={"/login"}>
+                                                <button className="request-btn">Sign in</button>
+                                            </Link>
+                                            <Link to={"/demo"}>
+                                                <button className="request-btn ">Request demo</button>
+                                            </Link>
+                                        </div>
+                                    </div>
 
 
                                     {!(localStorage.getItem("ACCESS_TOKEN")) ?
