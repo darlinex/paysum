@@ -132,7 +132,7 @@ export default function AllEmployees() {
                 <div className="employee"><div>Employees</div><button>{employees.length}</button></div>
                 <div className="activee"><div>Active</div><button>{employees.length}</button></div>
                 <div className="inactivee"><div>Inactive</div><button>0</button></div>
-                <div className="readyy"><div>Payroll ready</div><button>30/40</button></div>
+                <div className="readyy"><div>Payroll ready</div><button>9</button></div>
             </div>
 
             <div className='button-filter flex justify-between'>

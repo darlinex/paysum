@@ -1,4 +1,4 @@
-import { X } from "lucide-react"; 
+import { X } from "lucide-react";
 import React, { useState } from "react";
 
 import './Addemployee.css'
@@ -13,7 +13,7 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
         employmentType: "",
         jobTitle: "",
         bankName: "",
-        grossPay: 0,
+        grossPay: null,
     });
 
     const employeeFields = [
@@ -29,14 +29,14 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
     ];
 
 
-        function handleChange(e) {
-            const { name, value, type } = e.target; 
-            setEmpDetails((prev) => ({
-                ...prev,
-                [name]: type === "number" ? Number(value) : value, // Convert numbers properly
-            }));
-        }
-        
+    function handleChange(e) {
+        const { name, value, type } = e.target;
+        setEmpDetails((prev) => ({
+            ...prev,
+            [name]: type === "number" ? Number(value) : value, // Convert numbers properly
+        }));
+    }
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -50,12 +50,12 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
             fullName: "",
             email: "",
             accountNumber: "",
-            HireDate: "", 
+            HireDate: "",
             department: "",
             employmentType: "",
             jobTitle: "",
             bankName: "",
-            grossPay: 0
+            grossPay: null,
         });
 
         setShowModal(false); // Close modal after submission
@@ -69,41 +69,42 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
             >
                 <X size={24} />
             </button>
-        <div className="modal-div rounded-md">
+            <div className="modal-div rounded-md">
 
                 <div className="add-employee-text">
-                            <p className=" font-bold text-3xl flex items-center justify-center">Add Employee Details</p>
+                    <p className=" font-bold text-3xl flex items-center justify-center">Add Employee Details</p>
                 </div>
 
 
 
-            <form 
-                className="space-y-4 grid grid-cols-3 gap-6  p-6 rounded-lg shadow-lg" 
-                onSubmit={handleSubmit}
-            >
-               
-                {employeeFields.map(({ key, label, type }) => (
-                    <div key={key} className="flex flex-col">
-                        <label className="font-bold text-lg mb-1">{label}:</label>
-                        <input
-                            type={type}
-                            name={key}
-                            className="block w-full p-2 border border-gray-300 rounded-md"
-                            onChange={handleChange}
-                            value={empDetails[key]}
-                            required
-                        />
-                    </div>
-                ))}
-
-                <button
-                    type="submit"
-                    className="col-span-3 py-2 bg-[#FF7943] text-white font-semibold rounded-md hover:bg-[#e76c38] transition duration-200"
+                <form
+                    className="space-y-4 grid grid-cols-3 gap-6  p-6 rounded-lg shadow-lg"
+                    onSubmit={handleSubmit}
                 >
-                    Create Employee
-                </button>
-            </form>
-        </div>
+
+                    {employeeFields.map(({ key, label, type }) => (
+                        <div key={key} className="flex flex-col">
+                            <label className="font-bold text-lg mb-1">{label}:</label>
+                            <input
+                                type={type}
+                                placeholder={`Enter ${label}`}
+                                name={key}
+                                className="block w-full p-2 border border-gray-300 rounded-md"
+                                onChange={handleChange}
+                                value={empDetails[key]}
+                                required
+                            />
+                        </div>
+                    ))}
+
+                    <button
+                        type="submit"
+                        className="col-span-3 py-2 bg-[#FF7943] text-white font-semibold rounded-md hover:bg-[#e76c38] transition duration-200"
+                    >
+                        Create Employee
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }
