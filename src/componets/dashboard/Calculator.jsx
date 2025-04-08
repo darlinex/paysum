@@ -83,7 +83,7 @@ function CalculatorScreen() {
       </div>
 
       <table className="payroll-table w-full border-collapse bg-white rounded-lg overflow-hidden shadow-md">
-        <thead className="bg-[#E6EDF3] text-[#00294A] font-medium">
+        <thead className="bg-[#E6EDF3] text-[#00294A] font-medium ">
           <tr>
             <th className="p-3 text-left">Full Name</th>
             <th className="p-3 text-left">Email</th>

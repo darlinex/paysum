@@ -14,7 +14,7 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    border-radius: 10px; /* Apply rounded corners to the table container */
+    border-radius: 10px; 
     overflow: hidden;
   }
   
