@@ -167,10 +167,12 @@ const Demo = () => {
             By submitting this form, you consent to the terms and conditions <br />
             stated with our privacy policy.
           </p>
+        <div className='div-demo-btn'>
 
           <button type="submit" className="demo_btn2">
             Submit
           </button>
+        </div>
         </form>
       </div>
     </div>

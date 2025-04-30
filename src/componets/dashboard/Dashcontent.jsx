@@ -6,6 +6,9 @@ import { IoPersonOutline } from "react-icons/io5";
 import "./Dashcontent.css";
 
 function Content() {
+
+
+  
   return (
     <div className="content">
       <h1 className="welcome_h1  text-[#00294A] ">Welcome Back, Admin</h1>
@@ -46,8 +49,8 @@ function Content() {
             <div className="last">
               <h3 className="text-[#00294A] font-medium">Last Payroll</h3>
               <div className="last-text">
-                <p className="text-[#8A8A8A]">Feb 23, 2025</p>
-                <p className="text-[#00294A] font-medium">₦650,500</p>
+                <p className="fp text-[#8A8A8A] ">Feb 23, 2025</p>
+                <p className="sp text-[#00294A] font-medium ">₦650,500</p>
               </div>
             </div>
             <div className="icons-last">
@@ -65,8 +68,8 @@ function Content() {
             <div className="last">
               <h3 className="text-[#00294A] font-medium">Next Payroll</h3>
               <div className="last-text">
-                <p className="text-[#8A8A8A]">Mar 23, 2025</p>
-                <p className="text-[#00294A] font-medium">7 days left...</p>
+                <p className=" fp text-[#8A8A8A]">Mar 23, 2025</p>
+                <p className=" sp text-[#00294A] font-medium">7 days left...</p>
               </div>
             </div>
             <div className="icons-last">
@@ -81,8 +84,8 @@ function Content() {
             <div className="last">
               <h3 className="text-[#00294A] font-medium">New Hires</h3>
               <div className="last-text">
-                <p className="text-[#8A8A8A]">This Month</p>
-                <p className="text-[#00294A] font-medium">2 employees</p>
+                <p className="fp text-[#8A8A8A]">This Month</p>
+                <p className="sp text-[#00294A] font-medium">2 employees</p>
               </div>
             </div>
             <div className="icons-last">

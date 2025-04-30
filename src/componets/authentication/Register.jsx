@@ -4,10 +4,11 @@ import { LiaEyeSlash, LiaEye } from "react-icons/lia";
 import instance from "../axios/axiosinstance";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion"; // Import framer-motion for animations
 
 function Register() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -31,7 +32,6 @@ function Register() {
   // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
 
     // Validate password strength
     if (!isPasswordValid(formData.password)) {
@@ -53,7 +53,7 @@ function Register() {
 
       toast.success("Signup successful! Please log in.");
       console.log(response.data);
-      navigate(`/otp/${formData.email}`)
+      navigate(`/otp/${formData.email}`);
     } catch (error) {
       toast.error(error.response?.data?.message || "Signup failed. Try again.");
       console.error("Signup error:", error);
@@ -62,22 +62,53 @@ function Register() {
 
   return (
     <div className="div-login">
-      <form className="login-card" onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
+      <motion.form
+        className="login-card"
+        onSubmit={handleSubmit}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <motion.h1
+          className="signup"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          Sign Up
+        </motion.h1>
 
-        <label htmlFor="email">Email</label>
-        <input
+        <motion.label
+          
+          htmlFor="email"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          Email
+        </motion.label>
+        <motion.input
           type="email"
           placeholder="Enter Email Address"
           name="email"
           value={formData.email}
           onChange={handleChange}
           required
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.4 }}
         />
 
-        <label htmlFor="password">Password</label>
+        <motion.label
+          htmlFor="password"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.6 }}
+        >
+          Password
+        </motion.label>
         <div className="password-eye">
-          <input
+          <motion.input
             type={showPassword ? "text" : "password"}
             placeholder="Enter Password"
             name="password"
@@ -85,6 +116,9 @@ function Register() {
             onChange={handleChange}
             required
             className="input-password"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
           />
           {showPassword ? (
             <LiaEye className="see-password" onClick={() => setShowPassword(false)} />
@@ -93,9 +127,16 @@ function Register() {
           )}
         </div>
 
-        <label htmlFor="confirmPassword">Confirm Password</label>
+        <motion.label
+          htmlFor="confirmPassword"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1 }}
+        >
+          Confirm Password
+        </motion.label>
         <div className="password-eye">
-          <input
+          <motion.input
             type={showConfirmPassword ? "text" : "password"}
             placeholder="Confirm Password"
             name="confirmPassword"
@@ -103,6 +144,9 @@ function Register() {
             onChange={handleChange}
             required
             className="input-password"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 1.2 }}
           />
           {showConfirmPassword ? (
             <LiaEye className="see-password" onClick={() => setShowConfirmPassword(false)} />
@@ -110,11 +154,17 @@ function Register() {
             <LiaEyeSlash className="see-password" onClick={() => setShowConfirmPassword(true)} />
           )}
         </div>
-          {/* <Link to={"/otp"}> */}
-          
-        <button type="submit">Register</button>
-          {/* </Link> */}
-      </form>
+
+        <motion.button
+          type="submit"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.4 }}
+          whileHover={{ scale: 1.05 }}
+        >
+          Sign up
+        </motion.button>
+      </motion.form>
     </div>
   );
 }

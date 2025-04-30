@@ -13,7 +13,7 @@
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     width: 400px;
-    text-align: center;
+    /* text-align: center; */
     border: 1px solid rgba(255, 121, 67, 0.3);
 }
 
@@ -21,6 +21,16 @@
 .login-card h1 {
     margin-bottom: 20px;
     color: #083c5a;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.signup{
+    font-weight: 500;
+}
+.welcom{    
+    color: #083c5a;
+    font-weight: 500;
     font-size: 24px;
 }
 
@@ -28,7 +38,7 @@
 .login-card label {
     display: block;
     text-align: left;
-    font-weight: 600;
+    font-weight: 400;
     /* margin: 10px 0 5px; */
     color: #083c5a;
 }

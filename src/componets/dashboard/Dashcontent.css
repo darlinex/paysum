@@ -18,6 +18,12 @@
   grid-template-columns: 68% 30%;
   align-items: start;
 }
+.fp{
+  font-size: 14px;
+}
+.sp{
+  font-size:24px;
+}
 
 .first-div{
   display: grid;

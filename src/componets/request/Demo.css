@@ -105,8 +105,16 @@ input, select {
   font-size: 16px;
   margin-top: 20px;
   align-self: center;
+  justify-content: center;
+  align-items: center;
 }
-
+.div-demo-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.div
 .terms {
   color: #8a8a8a;
   font-size: 12px;
