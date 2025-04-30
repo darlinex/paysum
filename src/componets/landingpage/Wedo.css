@@ -12,6 +12,11 @@
     flex-direction: column;
     align-items: center;
 }
+.what-we-do-full-div {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  
 
 .what-we-do {
     display: flex;
@@ -54,7 +59,7 @@
 
 .card1 h3 {
     font-size: 18px;
-    color: #333;
+    /* color: yellow; */
     margin-bottom: 15px;
     text-align: center;
 }
@@ -121,12 +126,13 @@
 }
 .what-we-do-first-p {
     color: rgba(255, 121, 67, 1);
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .what-we-do h3 {
     font-size: 2em;
     line-height: 150%;
+    font-weight: 500;
 }
 
 .secondp {
@@ -177,7 +183,7 @@
 .circle-for-what-we-do{
     position: absolute;
     /* left: 0; */
-    left: 30px;
+    left: 60px;
     bottom: 70px;
     top: 470px;
 

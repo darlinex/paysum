@@ -128,12 +128,12 @@ export default function AllEmployees() {
 
     return (
         <div className='employee-page'>
-            <div className="top-table">
+            {/* <div className="top-table">
                 <div className="employee"><div>Employees</div><button>{employees.length}</button></div>
                 <div className="activee"><div>Active</div><button>{employees.length}</button></div>
                 <div className="inactivee"><div>Inactive</div><button>0</button></div>
                 <div className="readyy"><div>Payroll ready</div><button>9</button></div>
-            </div>
+            </div> */}
 
             <div className='button-filter flex justify-between'>
                 <div className='div-resp'>
@@ -172,13 +172,13 @@ export default function AllEmployees() {
             )}
 
             <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-md">
-                <thead className="bg-gray-300 text-[#00294A] font-medium">
+                <thead className="bg-[#E6EDF3] text-[#00294A] font-medium">
                     <tr>
-                        <th className="p-3 text-left">Full Name</th>
-                        <th className="p-3 text-left">Role</th>
-                        <th className="p-3 text-left">Employment Type</th>
-                        <th className="p-3 text-left">Payroll Status</th>
-                        <th className="p-3 text-center">Actions</th>
+                        <th className="p-3 text-left font-medium">Full Name</th>
+                        <th className="p-3 text-left font-medium">Role</th>
+                        <th className="p-3 text-left font-medium">Employment Type</th>
+                        <th className="p-3 text-left font-medium">Payroll Status</th>
+                        <th className="p-3 text-center font-medium">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

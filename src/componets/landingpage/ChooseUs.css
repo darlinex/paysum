@@ -17,6 +17,12 @@
     padding-top: 90px;
     padding-right: 54px;
 }
+.chooseUs {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative; /* ensure child absolute elements are positioned correctly */
+  }
+  
 
 /* Left-side: Image section */
 .man-circle-square {
@@ -71,13 +77,14 @@
 /* Section title */
 .why_choose_p {
     color: rgba(255, 121, 67, 1);
-    font-weight: bold;
+    font-weight: 500;
     text-transform: uppercase;
 }
 .why_pay {
     color: #00294A;
-    font-weight: bold;
+    font-weight: 500;
     text-transform: uppercase;
+    font-size: 2rem;
 }
 
 /* Paragraph styling */

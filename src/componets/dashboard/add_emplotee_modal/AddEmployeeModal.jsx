@@ -72,13 +72,13 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
             <div className="modal-div rounded-md">
 
                 <div className="add-employee-text">
-                    <p className=" font-bold text-3xl flex items-center justify-center">Add Employee Details</p>
+                    <p className=" font-bold text-2xl flex items-center justify-center">Add Employee Details</p>
                 </div>
 
 
 
                 <form
-                    className="space-y-4 grid grid-cols-3 gap-6  p-6 rounded-lg shadow-lg"
+                    className="space-y-4 grid grid-cols-3 gap-6  !p-6 rounded-lg shadow-lg"
                     onSubmit={handleSubmit}
                 >
 

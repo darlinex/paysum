@@ -1,6 +1,7 @@
 .calculator{
     margin-left: 260px;
     padding: 8px;
+    margin-right: 20px;
 }
 
 
@@ -48,15 +49,16 @@
     top: 1px; /* Adjusts vertical alignment slightly */
 }
 .view-history{
-    padding: 10px;
+    padding: 10px 0px 10px 10px ;
+    margin-right: 0;
 }
 
 .view-history button{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     gap: 6px;
-    padding: 12px 20px;
+    padding: 6px 8px;
     background-color: white;
     color: #00294A;
     border: 2px solid gray;

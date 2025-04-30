@@ -1,8 +1,6 @@
-// import React from 'react'
-import React, { useState, useEffect } from 'react';
-
-import './Calculator.css'
-import { BsBoxArrowUpRight } from "react-icons/bs";
+import React, { useState, useEffect, useRef } from 'react';
+import './Calculator.css';
+import { CiMenuKebab } from "react-icons/ci";
 import { CiClock2 } from "react-icons/ci";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { authInstance } from '../axios/axiosinstance';
@@ -11,8 +9,11 @@ import { DownloadIcon, Trash2Icon } from 'lucide-react';
 function CalculatorScreen() {
   const [payroll, setPayroll] = useState([]);
   const [payslipUrlCSV, setPayslipUrlCSV] = useState('');
-  const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [activePopoverId, setActivePopoverId] = useState(null);
+
+  const popoverRef = useRef(null);
+
   const employeesPerPage = 10;
 
   useEffect(() => {
@@ -33,6 +34,17 @@ function CalculatorScreen() {
     getEmployees();
   }, []);
 
+  // Close popover on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popoverRef.current && !popoverRef.current.contains(event.target)) {
+        setActivePopoverId(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   function payrollDownload(id, fullName) {
     authInstance.get(`/payslip/pdf/${id}`, { responseType: 'blob' })
       .then(response => {
@@ -42,6 +54,15 @@ function CalculatorScreen() {
         link.setAttribute('download', `paysum_${fullName}_payslip_${id}.pdf`);
         document.body.appendChild(link);
         link.click();
+
+        const updatedPayroll = payroll.filter(emp => emp.id !== id);
+        setPayroll(updatedPayroll);
+
+        const downloaded = JSON.parse(localStorage.getItem('downloadedPayslips') || '[]');
+        if (!downloaded.includes(id)) {
+          downloaded.push(id);
+          localStorage.setItem('downloadedPayslips', JSON.stringify(downloaded));
+        }
       })
       .catch(error => {
         console.error(error);
@@ -61,14 +82,14 @@ function CalculatorScreen() {
 
   const indexOfLastEmployee = currentPage * employeesPerPage;
   const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-  const currentEmployees = filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+  const currentEmployees = payroll.slice(indexOfFirstEmployee, indexOfLastEmployee);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className='calculator'>
       <div className="payroll flex items-center justify-between">
-        <h3>Payroll - March 2025</h3>
+        <h3>Payroll - {new Date().toLocaleString('default', { month: 'long', year: 'numeric' })}</h3>
         <div className="run-payroll">
           <button onClick={() => window.open(payslipUrlCSV, '_blank')} disabled={!payslipUrlCSV}>
             Download payroll <DownloadIcon className="icon3" />
@@ -82,40 +103,63 @@ function CalculatorScreen() {
         </button>
       </div>
 
-      <table className="payroll-table w-full border-collapse bg-white rounded-lg overflow-hidden shadow-md">
-        <thead className="bg-[#E6EDF3] text-[#00294A] font-medium ">
+      <table className="payroll-table w-full border-collapse rounded-lg overflow-hidden shadow-md">
+        <thead className="bg-[#E6EDF3] text-[#00294A] font-medium">
           <tr>
-            <th className="p-3 text-left">Full Name</th>
-            <th className="p-3 text-left">Email</th>
-            <th className="p-3 text-left">Gross Pay</th>
-            <th className="p-3 text-left">Deductions</th>
-            <th className="p-3 text-left">Net Pay</th>
-            <th className="p-3 text-left">Actions</th>
+            <th className="p-3 text-left font-medium">Full Name</th>
+            <th className="p-3 text-left font-medium">Email</th>
+            <th className="p-3 text-left font-medium">Gross Pay</th>
+            <th className="p-3 text-left font-medium">Deductions</th>
+            <th className="p-3 text-left font-medium">Net Pay</th>
+            <th className="p-3 text-left font-medium">Actions</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {payroll.length > 0 ? (
-            payroll.map((emp, index) => (
-              <tr key={index} className="border-b hover:bg-gray-100">
+            currentEmployees.map((emp) => (
+              <tr key={emp.id} className="border-b hover:bg-gray-100">
                 <td className="p-3">{emp.employeeFullName}</td>
                 <td className="p-3">{emp.employee.email}</td>
                 <td className="p-3">{emp.grossPay}</td>
                 <td className="p-3">{emp.deductions}</td>
                 <td className="p-3">{emp.netPay}</td>
-                <td className="p-3">
-                  <button className='flex gap-2 bg-gray-200 items-center !px-4 !py-2 text-black'
-                    onClick={() => payrollDownload(emp.id, emp.employeeFullName)}>
-                    <DownloadIcon />
-                    Download
+                <td className="p-3 relative">
+                  <button
+                    onClick={() => setActivePopoverId(emp.id === activePopoverId ? null : emp.id)}
+                    className="text-black hover:text-blue-700"
+                  >
+                   
+                    <CiMenuKebab  size={20} />
                   </button>
+
+                  {activePopoverId === emp.id && (
+                    <div
+                      ref={popoverRef}
+                      className=" right-0 mt-2 w-40 bg-white border rounded shadow-md z-10"
+                    >
+                      <button
+                        className="w-full text-left !px-4 py-2 hover:bg-gray-100 flex items-center gap-3"
+                        onClick={() => {
+                          payrollDownload(emp.id, emp.employeeFullName);
+                          setActivePopoverId(null);
+                        }}
+                      >
+                        <DownloadIcon size={16} /> Download
+                      </button>
+                      <button
+                        className="w-full text-left !px-4 py-2 hover:bg-gray-100 text-red-600 flex items-center gap-3"
+                        onClick={() => {
+                          deleteEmp(emp.id);
+                          setActivePopoverId(null);
+                        }}
+                      >
+                        <Trash2Icon size={16} /> Delete
+                      </button>
+                    </div>
+                  )}
                 </td>
-                <td>
-                  <button className='bg-[#FF7943] flex gap-2 items-center !px-4 !py-2 text-white' onClick={() => deleteEmp(emp.id)}>
-                    <Trash2Icon />
-                    Delete
-                  </button>
-                </td>
+                <td></td>
               </tr>
             ))
           ) : (
@@ -126,20 +170,17 @@ function CalculatorScreen() {
         </tbody>
       </table>
 
-      {/* Pagination */}
       <div className="pagination-container">
         <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
           <GrPrevious />
         </button>
-
-        {[...Array(Math.ceil(filteredEmployees.length / employeesPerPage))].map((_, i) => (
+        {[...Array(Math.ceil(payroll.length / employeesPerPage))].map((_, i) => (
           <button key={i + 1} onClick={() => paginate(i + 1)} className={currentPage === i + 1 ? "active" : ""}>
             {i + 1}
           </button>
         ))}
-
-        <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(filteredEmployees.length / employeesPerPage)))}
-          disabled={currentPage === Math.ceil(filteredEmployees.length / employeesPerPage)}>
+        <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, Math.ceil(payroll.length / employeesPerPage)))}
+          disabled={currentPage === Math.ceil(payroll.length / employeesPerPage)}>
           <GrNext />
         </button>
       </div>
@@ -148,3 +189,8 @@ function CalculatorScreen() {
 }
 
 export default CalculatorScreen;
+
+
+
+
+// view history-history of all dowloaded payslip of employees
