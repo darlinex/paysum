@@ -3,15 +3,14 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import './Demo.css';
 import Ent from '../../assets/Entreprenuer.png';
 import instance from '../axios/axiosinstance';
 
-
 const Demo = () => {
   const navigate = useNavigate();
 
-  // State for form fields
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -20,26 +19,23 @@ const Demo = () => {
     companyName: '',
     companyRole: '',
     employeeHeadcount: 0,
-    contactPreference: 'phone', // 'phone' or 'email'
+    contactPreference: 'phone',
   });
 
-  // Handle input change
+  const [loading, setLoading] = useState(false); // ✅ loading state
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle radio button change
   const handleRadioChange = (e) => {
     setFormData({ ...formData, contactPreference: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
-    // Validate form fields
+
     if (
       !formData.firstName ||
       !formData.lastName ||
@@ -52,41 +48,43 @@ const Demo = () => {
       toast.error('Please fill all fields');
       return;
     }
-    console.log("bwfore request");
-    
+
+    setLoading(true); // ✅ Set loading before request
     try {
-      // Make API request
-      const response = await
-        instance.post('/demo',
-        {...formData, employeeHeadcount: parseInt(formData.employeeHeadcount)}
-      );
-      console.log('after request')
-      // Handle success
+      const response = await instance.post('/demo', {
+        ...formData,
+        employeeHeadcount: parseInt(formData.employeeHeadcount),
+      });
+
       if (response.status === 200 || response.status === 201) {
         toast.success('Form submitted successfully!');
         setTimeout(() => {
-          navigate('/'); // Redirect to success page
-        }, 2000); // Wait 2 seconds before redirecting
+          navigate('/');
+        }, 2000);
       }
     } catch (error) {
-      // Handle error
       toast.error('An error occurred. Please try again.');
-      console.log('before error')
       console.error('API Error:', error);
+    } finally {
+      setLoading(false); // ✅ Reset loading after request
     }
   };
 
   return (
     <div className="demo_container">
-      <ToastContainer /> {/* For displaying toasts */}
+      <ToastContainer />
       <h1 className="demo_intro">Choose the convenience of automation</h1>
       <p className="demo_intro2">
         See why SMEs rely and trust us to handle their payroll calculation, employee management,
-       
         and payslip generation. Switch to an automated and convenient lane.
       </p>
 
-      <div className="demo_cont">
+      <motion.div
+        className="demo_cont"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      >
         <div className="pic_cont">
           <img src={Ent} alt="Entrepreneur" className="entre" />
         </div>
@@ -158,8 +156,6 @@ const Demo = () => {
                 value={formData.companyRole}
                 onChange={handleInputChange}
               />
-
-              
             </div>
           </div>
 
@@ -167,14 +163,14 @@ const Demo = () => {
             By submitting this form, you consent to the terms and conditions <br />
             stated with our privacy policy.
           </p>
-        <div className='div-demo-btn'>
 
-          <button type="submit" className="demo_btn2">
-            Submit
-          </button>
-        </div>
+          <div className="div-demo-btn">
+            <button type="submit" className="demo_btn2" disabled={loading}>
+              {loading ? 'Loading...' : 'Submit'}
+            </button>
+          </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 };

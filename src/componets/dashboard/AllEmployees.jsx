@@ -3,7 +3,6 @@ import { FiFilter } from "react-icons/fi";
 import AddEmployeeModal from './add_emplotee_modal/AddEmployeeModal';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { IoIosAdd } from "react-icons/io";
-// import EmployeeTile from './employee-tile';
 import { IoClose } from "react-icons/io5";
 import './AllEmployees.css';
 import { GrNext, GrPrevious } from "react-icons/gr";
@@ -11,7 +10,10 @@ import { authInstance } from '../axios/axiosinstance';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MdOutlineCloudUpload } from "react-icons/md";
-import  BulkUploadModal from './add_emplotee_modal/RunPayrollModal';
+import BulkUploadModal from './add_emplotee_modal/RunPayrollModal';
+import EmployeeActionMenu from './EmployeeActionsMenu';
+import { useSearchEmployeeStore } from '../../store/seacrh-employee';
+
 
 export default function AllEmployees() {
     const EMPLOYEES_PER_PAGE = 10;
@@ -23,7 +25,9 @@ export default function AllEmployees() {
     const [filters, setFilters] = useState({ name: '', role: '', employmentType: '', date: '' });
     const [currentPage, setCurrentPage] = useState(1);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    
+
+    const { search, setSearch } = useSearchEmployeeStore();
+
     useEffect(() => {
         async function getEmployees() {
             try {
@@ -38,23 +42,15 @@ export default function AllEmployees() {
         }
         getEmployees();
     }, []);
-    
 
-    useEffect(() => {
-        console.log(employees)
-    }, [employees]);
-    
-    
     useEffect(() => {
         const indexOfLastEmployee = currentPage * EMPLOYEES_PER_PAGE;
         const indexOfFirstEmployee = indexOfLastEmployee - EMPLOYEES_PER_PAGE;
         setCurrentEmployees(filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee));
-    }, [currentPage, filteredEmployees, employees]);
-    
+    }, [currentPage, filteredEmployees]);
+
     const totalPages = Math.ceil(filteredEmployees.length / EMPLOYEES_PER_PAGE);
-    
-    
-    
+
     const handleFilter = () => {
         let filtered = employees.filter(emp =>
             (!filters.name || emp.fullName.toLowerCase().includes(filters.name.toLowerCase())) &&
@@ -65,91 +61,67 @@ export default function AllEmployees() {
         setFilteredEmployees(filtered);
         setCurrentPage(1);
     };
-    
-    function runPayroll(e) {
+
+    const runPayroll = (e) => {
         const empId = parseInt(e.target.id);
-        
+
         authInstance.post("/payroll/", { employeeId: empId })
-        .then((res) => {
-            console.log(res.data);
-            toast.success("Payroll ran successfully!", {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-            
-            // Update payroll status dynamically
-            setEmployees((prevEmployees) =>
-                prevEmployees.map((emp) =>
-                    emp.id === empId ? { ...emp, payrollStatus: "Ready" } : emp
-        )
-    );
-    
-    setFilteredEmployees((prevFiltered) =>
-        prevFiltered.map((emp) =>
-            emp.id === empId ? { ...emp, payrollStatus: "Ready" } : emp
-)
-);
-})
-.catch((error) => {
-    console.error("Payroll error:", error);
-    toast.error("Failed to run payroll. Please try again.", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-                    progress: undefined,
+            .then((res) => {
+                toast.success("Payroll ran successfully!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    theme: "colored",
+                });
+
+                setEmployees((prev) =>
+                    prev.map((emp) =>
+                        emp.id === empId ? { ...emp, payrollStatus: "Ready" } : emp
+                    )
+                );
+
+                setFilteredEmployees((prev) =>
+                    prev.map((emp) =>
+                        emp.id === empId ? { ...emp, payrollStatus: "Ready" } : emp
+                    )
+                );
+            })
+            .catch((error) => {
+                console.error("Payroll error:", error);
+                toast.error("Failed to run payroll. Please try again.", {
+                    position: "top-center",
+                    autoClose: 3000,
                     theme: "colored",
                 });
             });
-        }
-        
-        
-        
-        function handleSubmit(e) {
-            e.preventDefault();
-            employees.grosspay = parseFloat(employees.grosspay).toFixed(2);
-            console.log(employees)
-            authInstance.post('/employee/', employees).then((res) => {
-                console.log(res)
-            })
-        }
+    };
 
-        function toggleOpen() {
-            setIsModalOpen(!isModalOpen)
-        };
+    const toggleOpen = () => {
+        setIsModalOpen(!isModalOpen);
+    };
+
+    const paginate = (pageNumber) => {
+        if (pageNumber >= 1 && pageNumber <= totalPages) {
+            setCurrentPage(pageNumber);
+        }
+    };
+
 
     return (
         <div className='employee-page'>
-            {/* <div className="top-table">
-                <div className="employee"><div>Employees</div><button>{employees.length}</button></div>
-                <div className="activee"><div>Active</div><button>{employees.length}</button></div>
-                <div className="inactivee"><div>Inactive</div><button>0</button></div>
-                <div className="readyy"><div>Payroll ready</div><button>9</button></div>
-            </div> */}
+            <ToastContainer />
 
             <div className='button-filter flex justify-between'>
                 <div className='div-resp'>
-
-                <button className="add-employee-btn" onClick={() => setShowModal(true)}>
-                    <IoIosAdd className="icon2" /> Add Employee
-                </button>
-                <button className="add-employee-btn2"
-                onClick={toggleOpen}>
-                    <MdOutlineCloudUpload className="icon2" /
-                > Bulk Upload
-                </button>
+                    <button className="add-employee-btn" onClick={() => setShowModal(true)}>
+                        <IoIosAdd className="icon2" /> Add Employee
+                    </button>
+                    <button className="add-employee-btn2" onClick={toggleOpen}>
+                        <MdOutlineCloudUpload className="icon2" /> Bulk Upload
+                    </button>
                 </div>
                 <div className="filter-box" onClick={() => setShowFilterModal(true)}>
                     <FiFilter className="filter-icon" />
-                    <span>Filter</span>
+                    <span className='filter'>Filter</span>
                     <MdOutlineKeyboardArrowDown className="dropdown-icon" />
                 </div>
             </div>
@@ -182,7 +154,7 @@ export default function AllEmployees() {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentEmployees.length > 0 ? (
+                    {currentEmployees.length > 0 ? search.toLowerCase().trim() === "" ? (
                         currentEmployees.map((employee, index) => (
                             <tr key={index} className="border-b hover:bg-gray-100">
                                 <td className="p-3">{employee.fullName}</td>
@@ -190,17 +162,27 @@ export default function AllEmployees() {
                                 <td className="p-3">{employee.employmentType}</td>
                                 <td className="p-3">{employee.payrollStatus || "Pending"}</td>
                                 <td className="p-3 text-center">
-                                    <button
-                                        id={employee.id}
-                                        className="bg-gray-100 shadow-md text-green-600 !px-4 !py-2 rounded-md hover:bg-green-200 transition"
-                                        onClick={runPayroll}
-                                    >
-                                        Run Payroll
-                                    </button>
+                                    <EmployeeActionMenu
+                                        employeeId={employee.id}
+                                        onRunPayroll={(id) => runPayroll({ target: { id } })}
+                                    />
                                 </td>
+
                             </tr>
                         ))
-                    ) : (
+                    ) : (currentEmployees.filter(emp => emp.fullName.toLowerCase().includes(search.toLowerCase().trim()) || emp.jobTitle.toLowerCase().includes(search.toLowerCase().trim())).map((employee, index) => (<tr key={index} className="border-b hover:bg-gray-100">
+                        <td className="p-3">{employee.fullName}</td>
+                        <td className="p-3">{employee.jobTitle}</td>
+                        <td className="p-3">{employee.employmentType}</td>
+                        <td className="p-3">{employee.payrollStatus || "Pending"}</td>
+                        <td className="p-3 text-center">
+                            <EmployeeActionMenu
+                                employeeId={employee.id}
+                                onRunPayroll={(id) => runPayroll({ target: { id } })}
+                            />
+                        </td>
+
+                    </tr>))) : (
                         <tr>
                             <td colSpan="5" className="p-5 text-center font-semibold text-gray-500">
                                 No employee found
@@ -210,44 +192,48 @@ export default function AllEmployees() {
                 </tbody>
             </table>
 
-
-
-
-            <div>
-                <div className='run-payroll-div'>
-
-                    <button onClick={handleSubmit} className='run-payroll-btn'>
-                        Save Employee
-                    </button>
-                </div>
-                {/* Pagination */}
-                <div className="pagination-container">
+            {/* Pagination */}
+            <div className="flex justify-end mt-4">
+                <div className="flex items-center space-x-2 gap-4 !my-5">
+                    {/* Previous */}
                     <button
-                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        onClick={() => paginate(currentPage - 1)}
                         disabled={currentPage === 1}
+                        className={`w-10 h-10 rounded border flex items-center justify-center ${currentPage === 1
+                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed border-gray-400'
+                            : 'bg-white text-[#336F9F] border-[#336F9F] border-2 font-extrabold hover:bg-blue-100'
+                            }`}
                     >
                         <GrPrevious />
                     </button>
 
-                    {[...Array(totalPages)].map((_, i) => (
+                    {/* Page Numbers */}
+                    {[...Array(totalPages).keys()].map(number => (
                         <button
-                            key={i}
-                            onClick={() => setCurrentPage(i + 1)}
-                            className={currentPage === i + 1 ? "active" : ""}
+                            key={number + 1}
+                            onClick={() => paginate(number + 1)}
+                            className={`w-10 h-10 rounded border flex items-center justify-center font-semibold ${currentPage === number + 1
+                                ? 'bg-[#00447B] text-[#ffffff] border-blue-800'
+                                : 'bg-white text-[#00447B] border-blue-600 hover:bg-blue-100'
+                                }`}
                         >
-                            {i + 1}
+                            {number + 1}
                         </button>
                     ))}
 
+                    {/* Next */}
                     <button
-                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                        disabled={currentPage === totalPages}
+                        onClick={() => paginate(currentPage + 1)}
+                        disabled={currentPage >= totalPages}
+                        className={`w-10 h-10 rounded border flex items-center justify-center ${currentPage >= totalPages
+                            ? 'bg-gray-300 text-gray-500 cursor-not-allowed border-gray-400'
+                            : 'bg-white text-blue-600 border-blue-600 hover:bg-blue-100'
+                            }`}
                     >
                         <GrNext />
                     </button>
                 </div>
             </div>
-
         </div>
     );
 }

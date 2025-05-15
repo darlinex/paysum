@@ -1,5 +1,5 @@
  .div{
-    margin-left: 280px;
+    margin-left: 260px;
     padding: 10px;
 }
 
@@ -8,17 +8,19 @@
     border-radius: 5px;
 }
 
-.div2{
+/* .div2{
     padding: 15px;
+} */
+
+.view-history2{
+    padding: 10px;
 }
-
-
 .view-history2 button {
     display: flex;
     align-items: center;
     justify-content: flex-start; /* Aligns text and icon to the left */
-    gap: 8px; /* Adds spacing between the icon and text */
-    padding: 12px 20px;
+    gap: 8px; 
+    padding: 8px 12px;
     background-color: white;
     color: #00294A;
     border: 2px solid #00294A;
