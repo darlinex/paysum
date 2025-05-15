@@ -72,6 +72,7 @@
 
 .view-history button:hover{
     background-color: rgba(0, 41, 74, 0.85);
+    color: white;
 }
 
 .view-history .icon4 {

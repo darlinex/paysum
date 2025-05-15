@@ -9,12 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const navigate = useNavigate();
-  const [cred, setCred] = useState({
-    email: "",
-    password: ""
-  });
-
+  const [cred, setCred] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false); // <-- New loading state
 
   function handleChange(e) {
     setCred((prev) => ({
@@ -30,6 +27,8 @@ function Login() {
       toast.error("Please fill in both email and password.");
       return;
     }
+
+    setLoading(true); // Start loading
 
     try {
       const response = await instance.post("/auth/login/", cred);
@@ -50,6 +49,8 @@ function Login() {
         toast.error("Network error. Please try again.");
       }
       console.error("Login error:", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   }
 
@@ -108,8 +109,23 @@ function Login() {
           type="submit"
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.95 }}
+          disabled={loading} // <-- Disable while loading
+          className={loading ? "loading-btn" : ""} // Optional: style while loading
         >
-          Login
+          {loading ? (
+            <motion.span
+              key="loading"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ repeat: Infinity, repeatType: "loop", duration: 1 }}
+            >
+              Loading<span className="dot1">.</span>
+              <span className="dot2">.</span>
+              <span className="dot3">.</span>
+            </motion.span>
+          ) : (
+            "Login"
+          )}
         </motion.button>
       </motion.form>
     </motion.div>

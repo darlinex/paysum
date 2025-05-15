@@ -6,9 +6,11 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { LogOutIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useSearchEmployeeStore } from "../../store/seacrh-employee";
 
 function Navdashhboard() {
     const router = useNavigate()
+    const {search, setSearch} =useSearchEmployeeStore();
     const [activeIcon, setActiveIcon] = useState(null);
     const [dropDown, setDropdown] = useState(null);
 
@@ -21,7 +23,7 @@ function Navdashhboard() {
         <div className="full-div">
             <div className="search-container">
                 <CiSearch className="search-icon" />
-                <input type="search" placeholder="Search..." className="search-input" />
+                <input type="search" placeholder="Search..." className="search-input" value={search} onChange={(e) => setSearch(e.target.value)}/>
             </div>
 
             <div className="user-notify relative">

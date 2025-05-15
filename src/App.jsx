@@ -21,7 +21,7 @@ import ProtectedRoute from './utils/protectedRoutes';
 import PrivacyPolicy from './componets/landingpage/PrivacyPolicy';
 
 function App() {
-
+ 
   console.log('starting app')
   return (
     <BrowserRouter>
@@ -43,7 +43,7 @@ function App() {
             <Route path="home" element={<HomeScreen />} />
             <Route path="calculator" element={<CalculatorScreen />} />
             <Route path="allemployees" element={<AllEmployees />} />
-            {/* <Route path="payslip" element={<Payslip />} /> */}
+            <Route path="payslip" element={<Payslip />} />
           </Route>
         </Route>
         <Route path="/demo" element={<Demo />} />
