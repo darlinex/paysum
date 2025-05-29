@@ -99,7 +99,7 @@ export default function Payslip() {
   const handleSendAllPayroll = async () => {
     try {
       setIsSendingPayroll(true);
-      const response = await authInstance.post('https://payrum-1.onrender.com/api/payslip/send-all');
+      const response = await authInstance.post('/payslip/send-all');
       alert("Payroll sent successfully to all employees!");
       setRefreshKey(prev => prev + 1); // Refresh the data
     } catch (error) {
@@ -262,21 +262,28 @@ export default function Payslip() {
         >
           Download
         </button>
-        <button
-          onClick={async () => {
-            try {
-              await authInstance.post(`/payslip/send/${employee.id}`);
-              alert("Payslip sent successfully!");
-            } catch (error) {
-              console.error("Failed to send payslip:", error);
-              alert("Failed to send payslip. Please try again.");
-            }
-            onClose();
-          }}
-          className="block w-full text-left px-2 py-1 hover:bg-gray-100 text-sm text-[#00447B]"
-        >
-          Send
-        </button>
+       
+<button
+  onClick={async () => {
+    const handleSend = async (id) => {
+      try {
+        await authInstance.post(`/payslip/send/${id}`);
+        alert("Payslip sent successfully!");
+      } catch (error) {
+        console.error("Failed to send payslip:", error);
+        alert("Failed to send payslip. Please try again.");
+      } finally {
+        onClose(); // Ensure the modal or dialog closes after the action
+      }
+    };
+
+    await handleSend(employee.id); // Call it with the dynamic id
+  }}
+  className="block w-full text-left px-2 py-1 hover:bg-gray-100 text-sm text-[#00447B]"
+>
+  Send
+</button>
+
         <button
           onClick={() => {
             console.log("Delete clicked"); // Replace with actual delete logic

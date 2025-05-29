@@ -8,6 +8,16 @@ import "./Dashcontent.css";
 function Content() {
 
 
+  function getMonthDays(){
+    const date = new Date();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const days = new Date(year, month + 1, 0).getDate();
+    return days
+  }
+
+
+
   
   return (
     <div className="content">
@@ -68,8 +78,8 @@ function Content() {
             <div className="last">
               <h3 className="text-[#00294A] font-medium">Next Payroll</h3>
               <div className="last-text">
-                <p className=" fp text-[#8A8A8A]">Mar 23, 2025</p>
-                <p className=" sp text-[#00294A] font-medium">7 days left...</p>
+                <p className=" fp text-[#8A8A8A]">{new Date().toDateString()}</p> 
+                <p className=" sp text-[#00294A] font-medium">{getMonthDays() - new Date().getDate()} days left...</p>
               </div>
             </div>
             <div className="icons-last">

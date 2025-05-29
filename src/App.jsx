@@ -19,7 +19,7 @@ import Payslip from './componets/dashboard/Payslip';
 import SeePricing from './componets/seepricing/SeePricing';
 import ProtectedRoute from './utils/protectedRoutes';
 import PrivacyPolicy from './componets/landingpage/PrivacyPolicy';
-
+import EmployeeModal from './componets/dashboard/add_emplotee_modal/EmployeeModal';
 function App() {
  
   console.log('starting app')
@@ -44,6 +44,8 @@ function App() {
             <Route path="calculator" element={<CalculatorScreen />} />
             <Route path="allemployees" element={<AllEmployees />} />
             <Route path="payslip" element={<Payslip />} />
+            <Route path="employeemodal" element={<EmployeeModal />} />
+          
           </Route>
         </Route>
         <Route path="/demo" element={<Demo />} />

@@ -107,6 +107,7 @@ export default function AllEmployees() {
 
 
     return (
+        
         <div className='employee-page'>
             <ToastContainer />
 
