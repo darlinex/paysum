@@ -4,8 +4,287 @@ import { CiMenuKebab } from "react-icons/ci";
 import { CiClock2 } from "react-icons/ci";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { authInstance } from '../axios/axiosinstance';
-import { DownloadIcon, Trash2Icon } from 'lucide-react';
+import { DownloadIcon, Trash2Icon, User, Phone, Mail, Edit } from 'lucide-react';
 import { useSearchEmployeeStore } from '../../store/seacrh-employee';
+import AddEmployeeModal from './add_emplotee_modal/AddEmployeeModal';
+
+// Employee Details Modal Component
+const EmployeeModal = ({ employee, onClose, onEdit }) => {
+  const styles = {
+    overlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(55, 65, 81, 0.75)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '16px',
+      zIndex: 1000
+    },
+    modal: {
+      backgroundColor: 'white',
+      borderRadius: '12px',
+      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+      width: '100%',
+      maxWidth: '512px',
+      position: 'relative'
+    },
+    header: {
+      position: 'absolute',
+      top: '16px',
+      left: '24px'
+    },
+    headerTitle: {
+      color: '#6b7280',
+      fontWeight: '500',
+      fontSize: '14px',
+      margin: 0
+    },
+    closeButton: {
+      position: 'absolute',
+      top: '16px',
+      right: '16px',
+      width: '32px',
+      height: '32px',
+      borderRadius: '50%',
+      backgroundColor: '#ef4444',
+      color: 'white',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      border: 'none',
+      fontSize: '18px',
+      fontWeight: 'bold',
+      cursor: 'pointer',
+      transition: 'background-color 0.2s'
+    },
+    employeeInfo: {
+      paddingTop: '64px',
+      paddingBottom: '24px',
+      textAlign: 'center'
+    },
+    avatar: {
+      width: '80px',
+      height: '80px',
+      backgroundColor: '#e5e7eb',
+      borderRadius: '50%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: '0 auto 16px'
+    },
+    employeeName: {
+      fontSize: '20px',
+      fontWeight: '600',
+      color: '#111827',
+      margin: '0 0 4px 0'
+    },
+    employeeRole: {
+      color: '#6b7280',
+      fontSize: '14px',
+      margin: 0
+    },
+    content: {
+      padding: '0 24px 24px'
+    },
+    grid: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gap: '32px',
+      marginBottom: '24px'
+    },
+    section: {},
+    sectionTitle: {
+      color: '#111827',
+      fontWeight: '600',
+      marginBottom: '12px',
+      fontSize: '14px',
+      margin: '0 0 12px 0'
+    },
+    detailItem: {
+      marginBottom: '8px',
+      fontSize: '12px'
+    },
+    detailLabel: {
+      color: '#6b7280'
+    },
+    detailValue: {
+      color: '#111827'
+    },
+    contactItem: {
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: '8px',
+      fontSize: '12px'
+    },
+    contactIcon: {
+      width: '12px',
+      height: '12px',
+      color: '#f97316',
+      marginRight: '8px',
+      flexShrink: 0
+    },
+    buttonContainer: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '12px'
+    },
+    button: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      padding: '8px 16px',
+      color: 'white',
+      borderRadius: '4px',
+      fontSize: '14px',
+      fontWeight: '500',
+      border: 'none',
+      cursor: 'pointer',
+      transition: 'background-color 0.2s'
+    },
+    editButton: {
+      backgroundColor: '#3b82f6'
+    },
+    deleteButton: {
+      backgroundColor: '#ef4444'
+    },
+    buttonIcon: {
+      width: '16px',
+      height: '16px'
+    }
+  };
+
+  return (
+    <div style={styles.overlay}>
+      <div style={styles.modal}>
+        {/* Header */}
+        <div style={styles.header}>
+          <h2 style={styles.headerTitle}>Employee Details</h2>
+        </div>
+        <button 
+          onClick={onClose}
+          style={styles.closeButton}
+          onMouseEnter={(e) => e.target.style.backgroundColor = '#dc2626'}
+          onMouseLeave={(e) => e.target.style.backgroundColor = '#ef4444'}
+        >
+          ×
+        </button>
+
+        {/* Employee Info */}
+        <div style={styles.employeeInfo}>
+          <div style={styles.avatar}>
+            <User style={{width: '48px', height: '48px', color: '#6b7280'}} />
+          </div>
+          <h3 style={styles.employeeName}>{employee.employeeFullName}</h3>
+          <p style={styles.employeeRole}>{employee.employee?.jobTitle || 'Employee'}</p>
+        </div>
+
+        {/* Content */}
+        <div style={styles.content}>
+          <div style={styles.grid}>
+            {/* Company Details */}
+            <div style={styles.section}>
+              <h4 style={styles.sectionTitle}>Company Details</h4>
+              <div>
+                <div style={styles.detailItem}>
+                  <span style={styles.detailLabel}>Employee ID: </span>
+                  <span style={styles.detailValue}>{employee.id}</span>
+                </div>
+                <div style={styles.detailItem}>
+                  <span style={styles.detailLabel}>Department: </span>
+                  <span style={styles.detailValue}>{employee.employee?.department || 'N/A'}</span>
+                </div>
+                <div style={styles.detailItem}>
+                  <span style={styles.detailLabel}>Employment Type: </span>
+                  <span style={styles.detailValue}>{employee.employee?.employmentType || 'Full-time'}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Details */}
+            <div style={styles.section}>
+              <h4 style={styles.sectionTitle}>Contact Details</h4>
+              <div>
+                <div style={styles.contactItem}>
+                  <Phone style={styles.contactIcon} />
+                  <span style={styles.detailValue}>{employee.employee?.phone || 'N/A'}</span>
+                </div>
+                <div style={styles.contactItem}>
+                  <Mail style={styles.contactIcon} />
+                  <span style={styles.detailValue}>{employee.employee?.email}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={styles.grid}>
+            {/* Account Details */}
+            <div style={styles.section}>
+              <h4 style={styles.sectionTitle}>Account Details</h4>
+              <div>
+                <div style={styles.detailItem}>
+                  <span style={styles.detailLabel}>Bank Name: </span>
+                  <span style={styles.detailValue}>{employee.employee?.bankName || 'N/A'}</span>
+                </div>
+                <div style={styles.detailItem}>
+                  <span style={styles.detailLabel}>Account Number: </span>
+                  <span style={styles.detailValue}>{employee.employee?.accountNumber || 'N/A'}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Payroll Details */}
+            <div style={styles.section}>
+              <h4 style={styles.sectionTitle}>Payroll Details</h4>
+              <div>
+                <div style={styles.detailItem}>
+                  <span style={styles.detailLabel}>Gross Pay: </span>
+                  <span style={styles.detailValue}>₦{employee.grossPay}</span>
+                </div>
+                <div style={styles.detailItem}>
+                  <span style={styles.detailLabel}>Deductions: </span>
+                  <span style={styles.detailValue}>₦{employee.deductions}</span>
+                </div>
+                <div style={styles.detailItem}>
+                  <span style={styles.detailLabel}>Net Pay: </span>
+                  <span style={styles.detailValue}>₦{employee.netPay}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div style={styles.buttonContainer}>
+            <button 
+              style={{...styles.button, ...styles.editButton}}
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#2563eb'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = '#3b82f6'}
+              onClick={() => onEdit(employee)}
+            >
+              <Edit style={styles.buttonIcon} />
+              Edit
+            </button>
+            <button 
+              style={{...styles.button, ...styles.deleteButton}}
+              onMouseEnter={(e) => e.target.style.backgroundColor = '#dc2626'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = '#ef4444'}
+              onClick={() => {
+                // You can add delete functionality here
+                console.log('Delete employee:', employee.id);
+              }}
+            >
+              <Trash2Icon style={styles.buttonIcon} />
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 function CalculatorScreen() {
   const {search, setSearch} = useSearchEmployeeStore();
@@ -16,11 +295,50 @@ function CalculatorScreen() {
   const [viewHistory, setViewHistory] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
   const [popoverDirection, setPopoverDirection] = useState('down');
-
+  
+  // New state for employee modal and edit functionality
+  const [showEmployeeModal, setShowEmployeeModal] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
+  const [editingEmployee, setEditingEmployee] = useState(null);
 
   const popoverRef = useRef(null);
-
   const employeesPerPage = 10;
+
+  // Function to handle view details
+  const handleViewDetails = (employee) => {
+    setSelectedEmployee(employee);
+    setShowEmployeeModal(true);
+    setActivePopoverId(null); // Close the popover
+  };
+
+  // Function to close employee modal
+  const handleCloseEmployeeModal = () => {
+    setShowEmployeeModal(false);
+    setSelectedEmployee(null);
+  };
+
+  // Function to handle edit employee
+  const handleEditEmployee = (employee) => {
+    setEditingEmployee(employee);
+    setShowEmployeeModal(false); // Close details modal
+    setShowAddEmployeeModal(true); // Open add/edit modal
+  };
+
+  // Function to close add/edit modal
+  const handleCloseAddEmployeeModal = () => {
+    setShowAddEmployeeModal(false);
+    setEditingEmployee(null);
+  };
+
+  // Function to update employee list after edit
+  const handleEmployeeUpdated = (updatedEmployee) => {
+    setPayroll(prevPayroll => 
+      prevPayroll.map(emp => 
+        emp.id === updatedEmployee.id ? updatedEmployee : emp
+      )
+    );
+  };
 
   useEffect(() => {
     async function getEmployees() {
@@ -207,8 +525,6 @@ function CalculatorScreen() {
       </div>
     );
   };
-  
-  
 
   return (
     <div className="calculator p-4">
@@ -237,160 +553,182 @@ function CalculatorScreen() {
           </tr>
         </thead>
         <tbody>
-  {payroll.length > 0 ? search.toLowerCase().trim() === '' ? (
-    currentEmployees.map((emp) => (
-      <tr key={emp.id} className="border-b hover:bg-blue-50 text-sm">
-        <td className="p-4">{emp.employeeFullName}</td>
-        <td className="p-4">{emp.employee.email}</td>
-        <td className="p-4">{emp.grossPay}</td>
-        <td className="p-4">{emp.deductions}</td>
-        <td className="p-4">{emp.netPay}</td>
-        <td className="p-4 relative">
-          <button
-            onClick={() => setActivePopoverId(emp.id === activePopoverId ? null : emp.id)}
-            className="text-gray-700 hover:text-blue-700"
-          >
-            <CiMenuKebab size={20} />
-          </button>
-          {activePopoverId === emp.id && (
-            <div
-              ref={popoverRef}
-              className="absolute right-0 mt-2 w-44 bg-white border rounded-md shadow-lg z-10"
-            >
-              <button
-                onClick={() => {
-                  payrollDownload(emp.id, emp.employeeFullName, emp.grossPay, emp.deductions, emp.netPay, emp.employee.email);
-                  setActivePopoverId(null);
-                }}
-                className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center gap-2"
-              >
-                <DownloadIcon size={16} /> Download
-              </button>
-              <button
-                onClick={() => {
-                  deleteEmp(emp.id);
-                  setActivePopoverId(null);
-                }}
-                className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2"
-              >
-                <Trash2Icon size={16} /> Delete
-              </button>
-            </div>
-          )}
-        </td>
-      </tr>
-    ))
-  ) : (
-    currentEmployees.filter(emp => emp.employeeFullName.toLowerCase().includes(search.toLowerCase()) || emp.employee.email.toLowerCase().includes(search.toLowerCase()))
-      .map((emp) => (
-        <tr key={emp.id} className="border-b hover:bg-blue-50 text-sm">
-          <td className="p-4">{emp.employeeFullName}</td>
-          <td className="p-4">{emp.employee.email}</td>
-          <td className="p-4">{emp.grossPay}</td>
-          <td className="p-4">{emp.deductions}</td>
-          <td className="p-4">{emp.netPay}</td>
-          <td className="p-4 relative">
-            <button
-              onClick={() => setActivePopoverId(emp.id === activePopoverId ? null : emp.id)}
-              className="text-gray-700 hover:text-blue-700"
-            >
-              <CiMenuKebab size={20} />
-            </button>
-            {activePopoverId === emp.id && (
-              <div
-                ref={popoverRef}
-                className="absolute right-0 mt-2 w-44 bg-white border rounded-md shadow-lg z-10"
-              >
-                <button
-                  onClick={() => {
-                    payrollDownload(emp.id, emp.employeeFullName, emp.grossPay, emp.deductions, emp.netPay, emp.employee.email);
-                    setActivePopoverId(null);
-                  }}
-                  className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center gap-2"
-                >
-                  <DownloadIcon size={16} /> Download
-                </button>
-                <button
-                  onClick={() => {
-                    deleteEmp(emp.id);
-                    setActivePopoverId(null);
-                  }}
-                  className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2"
-                >
-                  <Trash2Icon size={16} /> Delete
-                </button>
-              </div>
-            )}
-          </td>
-        </tr>
-      ))
-  ) : (
-    <tr>
-      <td colSpan="6" className="text-center py-6 text-gray-500">No employees found</td>
-    </tr>
-  )}
-</tbody>
+          {payroll.length > 0 ? search.toLowerCase().trim() === '' ? (
+            currentEmployees.map((emp) => (
+              <tr key={emp.id} className="border-b hover:bg-blue-50 text-sm">
+                <td className="p-4">{emp.employeeFullName}</td>
+                <td className="p-4">{emp.employee.email}</td>
+                <td className="p-4">{emp.grossPay}</td>
+                <td className="p-4">{emp.deductions}</td>
+                <td className="p-4">{emp.netPay}</td>
+                <td className="p-4 relative">
+                  <button
+                    onClick={() => setActivePopoverId(emp.id === activePopoverId ? null : emp.id)}
+                    className="text-gray-700 hover:text-blue-700"
+                  >
+                    <CiMenuKebab size={20} />
+                  </button>
+                  {activePopoverId === emp.id && (
+                    <div
+                      ref={popoverRef}
+                      className="absolute right-0 mt-2 w-44 bg-white border rounded-md shadow-lg z-10"
+                    >
+                      <button
+                        onClick={() => {
+                          payrollDownload(emp.id, emp.employeeFullName, emp.grossPay, emp.deductions, emp.netPay, emp.employee.email);
+                          setActivePopoverId(null);
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center gap-2"
+                      >
+                        <DownloadIcon size={16} /> Download
+                      </button>
 
+                      <button
+                        onClick={() => handleViewDetails(emp)}
+                        className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center gap-2"
+                      >
+                        <User size={16} /> View Details
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          deleteEmp(emp.id);
+                          setActivePopoverId(null);
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2"
+                      >
+                        <Trash2Icon size={16} /> Delete
+                      </button>
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))
+          ) : (
+            currentEmployees.filter(emp => emp.employeeFullName.toLowerCase().includes(search.toLowerCase()) || emp.employee.email.toLowerCase().includes(search.toLowerCase()))
+              .map((emp) => (
+                <tr key={emp.id} className="border-b hover:bg-blue-50 text-sm">
+                  <td className="p-4">{emp.employeeFullName}</td>
+                  <td className="p-4">{emp.employee.email}</td>
+                  <td className="p-4">{emp.grossPay}</td>
+                  <td className="p-4">{emp.deductions}</td>
+                  <td className="p-4">{emp.netPay}</td>
+                  <td className="p-4 relative">
+                    <button
+                      onClick={() => setActivePopoverId(emp.id === activePopoverId ? null : emp.id)}
+                      className="text-gray-700 hover:text-blue-700"
+                    >
+                      <CiMenuKebab size={20} />
+                    </button>
+                    {activePopoverId === emp.id && (
+                      <div
+                        ref={popoverRef}
+                        className="absolute right-0 mt-2 w-44 bg-white border rounded-md shadow-lg z-10"
+                      >
+                        <button
+                          onClick={() => {
+                            payrollDownload(emp.id, emp.employeeFullName, emp.grossPay, emp.deductions, emp.netPay, emp.employee.email);
+                            setActivePopoverId(null);
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center gap-2"
+                        >
+                          <DownloadIcon size={16} /> Download
+                        </button>
+
+                        <button
+                          onClick={() => handleViewDetails(emp)}
+                          className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 flex items-center gap-2"
+                        >
+                          <User size={16} /> View Details
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            deleteEmp(emp.id);
+                            setActivePopoverId(null);
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2"
+                        >
+                          <Trash2Icon size={16} /> Delete
+                        </button>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))
+          ) : (
+            <tr>
+              <td colSpan="6" className="text-center py-6 text-gray-500">No employees found</td>
+            </tr>
+          )}
+        </tbody>
       </table>
 
-      
       <div className="flex justify-end mt-4 ">
-  <div className="flex items-center space-x-2 gap-4 !my-5">
-    {/* Previous Button */}
-    <button
-      onClick={() => paginate(currentPage - 1)}
-      disabled={currentPage === 1}
-      className={`w-10 h-10 rounded border flex items-center justify-center ${
-        currentPage === 1
-          ? 'bg-gray-300 text-gray-500 cursor-not-allowed border-gray-400'
-          : 'bg-white text-[#336F9F] border-[#336F9F ] border-2 font-extrabold hover:bg-blue-100 '
-      }`}
-    >
-      <GrPrevious />
-    </button>
+        <div className="flex items-center space-x-2 gap-4 !my-5">
+          {/* Previous Button */}
+          <button
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={`w-10 h-10 rounded border flex items-center justify-center ${
+              currentPage === 1
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed border-gray-400'
+                : 'bg-white text-[#336F9F] border-[#336F9F ] border-2 font-extrabold hover:bg-blue-100 '
+            }`}
+          >
+            <GrPrevious />
+          </button>
 
-    {/* Page Numbers */}
-    {[...Array(Math.ceil(payroll.length / employeesPerPage)).keys()].map(number => (
-      <button
-        key={number + 1}
-        onClick={() => paginate(number + 1)}
-        className={`w-10 h-10 rounded border flex items-center justify-center font-semibold ${
-          currentPage === number + 1
-            ? 'bg-[#00447B] text-[#ffffff] border-blue-800'
-            : 'bg-white text-[#00447B] border-blue-600 hover:bg-blue-100'
-        }`}
-      >
-        {number + 1}
-      </button>
-    ))}
+          {/* Page Numbers */}
+          {[...Array(Math.ceil(payroll.length / employeesPerPage)).keys()].map(number => (
+            <button
+              key={number + 1}
+              onClick={() => paginate(number + 1)}
+              className={`w-10 h-10 rounded border flex items-center justify-center font-semibold ${
+                currentPage === number + 1
+                  ? 'bg-[#00447B] text-[#ffffff] border-blue-800'
+                  : 'bg-white text-[#00447B] border-blue-600 hover:bg-blue-100'
+              }`}
+            >
+              {number + 1}
+            </button>
+          ))}
 
-    {/* Next Button */}
-    <button
-      onClick={() => paginate(currentPage + 1)}
-      disabled={indexOfLastEmployee >= payroll.length}
-      className={`w-10 h-10 rounded border flex items-center justify-center ${
-        indexOfLastEmployee >= payroll.length
-          ? 'bg-gray-300 text-gray-500 cursor-not-allowed border-gray-400'
-          : 'bg-white text-blue-600 border-blue-600 hover:bg-blue-100'
-      }`}
-    >
-      <GrNext />
-    </button>
-  </div>
-</div>
+          {/* Next Button */}
+          <button
+            onClick={() => paginate(currentPage + 1)}
+            disabled={indexOfLastEmployee >= payroll.length}
+            className={`w-10 h-10 rounded border flex items-center justify-center ${
+              indexOfLastEmployee >= payroll.length
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed border-gray-400'
+                : 'bg-white text-blue-600 border-blue-600 hover:bg-blue-100'
+            }`}
+          >
+            <GrNext />
+          </button>
+        </div>
+      </div>
 
-
-
-
+      {/* Modals */}
       {showHistory && <ViewHistoryModal onClose={() => setShowHistory(false)} history={viewHistory} />}
+      {showEmployeeModal && selectedEmployee && (
+        <EmployeeModal 
+          employee={selectedEmployee} 
+          onClose={handleCloseEmployeeModal}
+          onEdit={handleEditEmployee}
+        />
+      )}
+      {showAddEmployeeModal && (
+        <AddEmployeeModal
+          setEmployees={setPayroll}
+          setShowModal={handleCloseAddEmployeeModal}
+          setFilteredEmployees={setPayroll}
+          editingEmployee={editingEmployee}
+          onEmployeeUpdated={handleEmployeeUpdated}
+        />
+      )}
     </div>
   );
 }
 
 export default CalculatorScreen;
-
-
-
-
-
-// view history-history of all dowloaded payslip of employees

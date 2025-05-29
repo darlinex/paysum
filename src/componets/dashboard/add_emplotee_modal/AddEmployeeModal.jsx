@@ -1,10 +1,16 @@
 import { X } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Addemployee.css';
 import { authInstance } from "../../axios/axiosinstance"; // Adjust path if needed
 import { toast } from "react-toastify";
 
-function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) {
+function AddEmployeeModal({ 
+    setEmployees, 
+    setShowModal, 
+    setFilteredEmployees, 
+    editingEmployee, 
+    onEmployeeUpdated 
+}) {
     const [empDetails, setEmpDetails] = useState({
         fullName: "",
         email: "",
@@ -29,6 +35,30 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
         { key: "grossPay", label: "Gross Pay", type: "number" },
     ];
 
+    // Pre-populate form when editing
+    useEffect(() => {
+        if (editingEmployee) {
+            // Format date if it exists
+            const formatDate = (dateString) => {
+                if (!dateString) return "";
+                const date = new Date(dateString);
+                return date.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+            };
+
+            setEmpDetails({
+                fullName: editingEmployee.employeeFullName || "",
+                email: editingEmployee.employee?.email || "",
+                accountNumber: editingEmployee.employee?.accountNumber || "",
+                HireDate: formatDate(editingEmployee.employee?.HireDate) || "",
+                department: editingEmployee.employee?.department || "",
+                employmentType: editingEmployee.employee?.employmentType || "",
+                jobTitle: editingEmployee.employee?.jobTitle || "",
+                bankName: editingEmployee.employee?.bankName || "",
+                grossPay: editingEmployee.grossPay || null,
+            });
+        }
+    }, [editingEmployee]);
+
     function handleChange(e) {
         const { name, value, type } = e.target;
         setEmpDetails((prev) => ({
@@ -41,16 +71,45 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
         e.preventDefault();
 
         try {
-            const res = await authInstance.post("/employee/", empDetails);
-            const newEmployee = res.data.data;
+            if (editingEmployee) {
+                // Update existing employee
+                const res = await authInstance.put(`/employee/${editingEmployee.id}`, empDetails);
+                const updatedEmployee = res.data.data || res.data;
 
-            setEmployees((prev) => {
-                const updated = [...prev, newEmployee];
-                setFilteredEmployees(updated);
-                return updated;
-            });
+                // Update the employee in the payroll list
+                setEmployees((prev) => {
+                    const updated = prev.map(emp => 
+                        emp.id === editingEmployee.id 
+                            ? { ...emp, ...updatedEmployee, employeeFullName: empDetails.fullName }
+                            : emp
+                    );
+                    setFilteredEmployees(updated);
+                    return updated;
+                });
 
-            toast.success("Employee added successfully!");
+                // Call the callback if provided
+                if (onEmployeeUpdated) {
+                    onEmployeeUpdated({ 
+                        ...editingEmployee, 
+                        ...updatedEmployee, 
+                        employeeFullName: empDetails.fullName 
+                    });
+                }
+
+                toast.success("Employee updated successfully!");
+            } else {
+                // Create new employee
+                const res = await authInstance.post("/employee/", empDetails);
+                const newEmployee = res.data.data;
+
+                setEmployees((prev) => {
+                    const updated = [...prev, newEmployee];
+                    setFilteredEmployees(updated);
+                    return updated;
+                });
+
+                toast.success("Employee added successfully!");
+            }
 
             // Reset form
             setEmpDetails({
@@ -67,8 +126,8 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
 
             setShowModal(false);
         } catch (err) {
-            console.error("Failed to add employee:", err);
-            toast.error("Failed to add employee. Try again.");
+            console.error(`Failed to ${editingEmployee ? 'update' : 'add'} employee:`, err);
+            toast.error(`Failed to ${editingEmployee ? 'update' : 'add'} employee. Try again.`);
         }
     }
 
@@ -82,7 +141,9 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
             </button>
             <div className="modal-div rounded-md">
                 <div className="add-employee-text">
-                    <p className="font-bold text-2xl flex items-center justify-center">Add Employee Details</p>
+                    <p className="font-bold text-2xl flex items-center justify-center">
+                        {editingEmployee ? 'Edit Employee Details' : 'Add Employee Details'}
+                    </p>
                 </div>
 
                 <form
@@ -98,7 +159,7 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
                                 name={key}
                                 className="block w-full p-2 border border-gray-300 rounded-md"
                                 onChange={handleChange}
-                                value={empDetails[key]}
+                                value={empDetails[key] || ""}
                                 required
                             />
                         </div>
@@ -108,7 +169,7 @@ function AddEmployeeModal({ setEmployees, setShowModal, setFilteredEmployees }) 
                         type="submit"
                         className="col-span-3 py-2 bg-[#FF7943] text-white font-semibold rounded-md hover:bg-[#e76c38] transition duration-200"
                     >
-                        Create Employee
+                        {editingEmployee ? 'Update Employee' : 'Create Employee'}
                     </button>
                 </form>
             </div>
